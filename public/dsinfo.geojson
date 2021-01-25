@@ -1,0 +1,1231 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "28",
+        "DS_name": "Карабатан",
+        "Code": "KRBT",
+        "Adress": "Республика Казахстан, Атыруская, Атырау, ст. Карабатан",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KRBT",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.307850578,
+          47.272285981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "35",
+        "DS_name": "Кызылорда",
+        "Code": "KZRD",
+        "Adress": "Республика Казахстан, Кызылординская, Кызылорда, г. Кызылорда",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KZRD",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.494452072,
+          44.853955644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "36",
+        "DS_name": "Тобол",
+        "Code": "TOBL",
+        "Adress": "Республика Казахстан, Костанайская, Тарановский, п. Лисаковск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-TOBL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.581882286,
+          52.695830731
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "23",
+        "DS_name": "Хромтау",
+        "Code": "HROM",
+        "Adress": "Республика Казахстан, Актюбинская, Хромтауский, г. Хромтау",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-HROM",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.434491281,
+          50.251477597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "12",
+        "DS_name": "Атбасар",
+        "Code": "ATBA",
+        "Adress": "Республика Казахстан, Акмолинская, Атбасарский, г. Атбасар",
+        "Receiver_M": "LEICA GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ATBA",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.347788906,
+          51.808581600
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "17",
+        "DS_name": "Державинск",
+        "Code": "DERJ",
+        "Adress": "Республика Казахстан, Акмолинская, Жаркаинский, г. Державинск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-DERJ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.313263164,
+          51.099531733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "20",
+        "DS_name": "Ерейментау",
+        "Code": "ERMT",
+        "Adress": "Республика Казахстан, Акмолинская, Ерейментауский, г. Ерейментау",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ERMT",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.098228064,
+          51.624274392
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "16",
+        "DS_name": "Комсомольское",
+        "Code": "KOMS",
+        "Adress": "Республика Казахстан, Актюбинская, Айтеке-би, г. Комсомольское",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KOMS",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.293209,
+          50.261532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "29",
+        "DS_name": "Караганда",
+        "Code": "KRGD",
+        "Adress": "Республика Казахстан, Карагандинская, Караганды, г. Караганды",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KRGD",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.220415628,
+          49.971703286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "30",
+        "DS_name": "Каражал",
+        "Code": "KRJL",
+        "Adress": "Республика Казахстан, Карагандинская, Каражал, г. Каражал",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KRJL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.787848028,
+          48.001311297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "40",
+        "DS_name": "Риддер",
+        "Code": "RDDR",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Риддер, г. Риддер",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-RDDR",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.507230803,
+          50.348517264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "45",
+        "DS_name": "Шалкар",
+        "Code": "SHLK",
+        "Adress": "Республика Казахстан, Актюбинская, Шалкарский, г. Шалкар",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SHLK",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.614462292,
+          47.828839242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "8",
+        "DS_name": "Арысь",
+        "Code": "ARIS",
+        "Adress": "Республика Казахстан, Туркестанская, Арысский, ст. Арысь",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ARIS",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.798511444,
+          42.418422367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "31",
+        "DS_name": "Кокшетау",
+        "Code": "KKSH",
+        "Adress": "Республика Казахстан, Акмолинская, Кокшетау, г. Кокшетау",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KKSH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.423194669,
+          53.286680706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "34",
+        "DS_name": "Кульсары",
+        "Code": "KULS",
+        "Adress": "Республика Казахстан, Атыруская, Жылыойский, г. Кульсары",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KULS",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.940976792,
+          46.946064686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "48",
+        "DS_name": "Щучинск",
+        "Code": "SHCH",
+        "Adress": "Республика Казахстан, Акмолинская, Бурабайский, г. Щучинск",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SHCH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.184674858,
+          52.921732944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "60",
+        "DS_name": "Зырьяновск",
+        "Code": "ZYRN",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Зырьяновский, г. Зырьяновск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ZYRN",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.255445922,
+          49.789061489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "19",
+        "DS_name": "Эмба",
+        "Code": "EMBA",
+        "Adress": "Республика Казахстан, Актюбинская, Мугалжарский, г. Эмба",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-EMBA",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.144505397,
+          48.833953650
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "10",
+        "DS_name": "Астана",
+        "Code": "ASTA",
+        "Adress": "Республика Казахстан, Акмолинская, Астана, г. Астана",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ASTA",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.526555408,
+          51.161372211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "4",
+        "DS_name": "Актобе",
+        "Code": "AKTB",
+        "Adress": "Республика Казахстан, Актюбинская, Актобе, г. Актобе",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-AKTB",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.211520269,
+          50.284144550
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "5",
+        "DS_name": "Алматы",
+        "Code": "ALMA",
+        "Adress": "Республика Казахстан, Алматинская, Алматы, г. Алматы",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ALMA",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.945967192,
+          43.251787850
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "11",
+        "DS_name": "Жалтырь",
+        "Code": "JLTR",
+        "Adress": "Республика Казахстан, Акмолинская, Астраханский, ст. Жалтырь",
+        "Receiver_M": "LEICA GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-JLTR",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.836723014,
+          51.630787572
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "25",
+        "DS_name": "Жезказган",
+        "Code": "JZGN",
+        "Adress": "Республика Казахстан, Карагандинская, Жезказган, г. Жезказган",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-JZGN",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.710306411,
+          47.799036994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "52",
+        "DS_name": "Туркестан",
+        "Code": "TURN",
+        "Adress": "Республика Казахстан, Туркестанская, Туркестан, г. Туркестан",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-TURN",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.212623472,
+          43.286850867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "64",
+        "DS_name": "Баянауыл",
+        "Code": "BYNL",
+        "Adress": "Республика Казахстан, Павлодарская, Павлодарский, Баянауыл",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-BYNL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.420835438,
+          50.473455628
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "27",
+        "DS_name": "Капшагай",
+        "Code": "KPCH",
+        "Adress": "Республика Казахстан, Алматинская, Капшагай, г. Капшагай",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KPCH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.074451564,
+          43.879860364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "49",
+        "DS_name": "Шымкент",
+        "Code": "SHMK",
+        "Adress": "Республика Казахстан, Шымкент г.а., Шымкент г.а., г. Шымкент",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SHMK",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.607727322,
+          42.299670942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "2",
+        "DS_name": "Айтеке Би",
+        "Code": "ATKB",
+        "Adress": "Республика Казахстан, Кызылординская, Казалинский, п. Айтеке Би",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ATKB",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.151161844,
+          45.852639953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "15",
+        "DS_name": "Бейнеу",
+        "Code": "BENY",
+        "Adress": "Республика Казахстан, Мангыстауская, Бейнеуский, г. Бейнеу",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-BENY",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.188203436,
+          45.323491489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "39",
+        "DS_name": "Павлодар",
+        "Code": "PAVL",
+        "Adress": "Республика Казахстан, Павлодарская, ., г. Павлодар",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-PAVL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.973451014,
+          52.296715456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "44",
+        "DS_name": "Семей",
+        "Code": "SEME",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Семей, г. Семей",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SEME",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.265910472,
+          50.432694672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "42",
+        "DS_name": "Сарышаган",
+        "Code": "SRGN",
+        "Adress": "Республика Казахстан, Карагандинская, Актогайский, с. Сарышаган",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SRGN",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.610580011,
+          46.118602033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "59",
+        "DS_name": "Жанатурмыз",
+        "Code": "ZHTZ",
+        "Adress": "Республика Казахстан, Северо-Казахстанская, Петропавловск, ст. Жанатурмыз",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ZHTZ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.273499731,
+          54.786624086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "43",
+        "DS_name": "Аксай",
+        "Code": "AKSA",
+        "Adress": "Республика Казахстан, Западно-Казахстанская, Бурлинский, г. Аксай",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-AKSA",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.995675,
+          51.168936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "24",
+        "DS_name": "Индерборский",
+        "Code": "INDB",
+        "Adress": "Республика Казахстан, Атыруская, Индерский, с. Индерборский",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-INDB",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.742535556,
+          48.555316350
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "22",
+        "DS_name": "Исатай",
+        "Code": "ISTY",
+        "Adress": "Республика Казахстан, Атырауская, Исатайский, с. Исатай",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ISTY",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.067666472,
+          46.802114128
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "32",
+        "DS_name": "Коргалжын",
+        "Code": "KORJ",
+        "Adress": "Республика Казахстан, Акмолинская, Коргалжынский, с. Коргалжын",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KORJ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.013104700,
+          50.584734464
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "66",
+        "DS_name": "ДС Каркаралинск",
+        "Code": "KRKL",
+        "Adress": "Республика Казахстан, Карагандинская, Каркаралы, Каркаралы",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KRKL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.281310012,
+          49.244231401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "53",
+        "DS_name": "Уральск",
+        "Code": "ORAL",
+        "Adress": "Республика Казахстан, Западно-Казахстанская, Уральск, г. Уральск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ORAL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.373667967,
+          51.211633297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "50",
+        "DS_name": "Тайынша",
+        "Code": "TNSH",
+        "Adress": "Республика Казахстан, Северо-Казахстанская, Тайыншинский, г. Тайынша",
+        "Receiver_M": "Leica GRx1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-TNSH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.743274556,
+          53.839894917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "3",
+        "DS_name": "Актау",
+        "Code": "AKTY",
+        "Adress": "Республика Казахстан, Мангыстауская, Актау, г. Актау",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-AKTY",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.167813383,
+          43.634969000
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "6",
+        "DS_name": "Анар",
+        "Code": "ANAR",
+        "Adress": "Республика Казахстан, Акмолинская, Аршалынский, ст. Анар",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ANAR",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.393447803,
+          50.663050611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "57",
+        "DS_name": "Шар",
+        "Code": "CHSK",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Жарминский, г. Чарск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-CHSK",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.052136,
+          49.584614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "58",
+        "DS_name": "Жанаозен",
+        "Code": "JNOZ",
+        "Adress": "Республика Казахстан, Мангыстауская, Жанаозен, г.Жанаозен",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-JNOZ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.868458761,
+          43.341662308
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "56",
+        "DS_name": "Усть-Каменогорск",
+        "Code": "OSKM",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Усть-Каменогорск, г. Усть_Каменогорск",
+        "Receiver_M": "LEICA GRx1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-OSKM",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.567905744,
+          50.005292506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "41",
+        "DS_name": "Сарыозек",
+        "Code": "SARY",
+        "Adress": "Республика Казахстан, Алматинская, Кербулакский, с. Сарыозек",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SARY",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.979717797,
+          44.357238394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "46",
+        "DS_name": "Шашубай",
+        "Code": "SASH",
+        "Adress": "Республика Казахстан, Карагандинская, Актогайский, п. Шашубай",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SASH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.025447836,
+          46.807479153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "54",
+        "DS_name": "Ушарал",
+        "Code": "USHR",
+        "Adress": "Республика Казахстан, Алматинская, Алакольский, г. Ушарал",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-USHR",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.951975136,
+          46.175012806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "37",
+        "DS_name": "Новоишимское",
+        "Code": "NISH",
+        "Adress": "Республика Казахстан, Северо-Казахстанская, Габита Мусрепова, с. Новоишимское",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-NISH",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.764114886,
+          53.203279103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "18",
+        "DS_name": "Экибастуз",
+        "Code": "EKBS",
+        "Adress": "Республика Казахстан, Павлодарская, Экибастуз, г. Экибастуз",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-EKBS",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.314539061,
+          51.750590719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "21",
+        "DS_name": "Есиль",
+        "Code": "ESIL",
+        "Adress": "Республика Казахстан, Акмолинская, Есильский, г. Есиль",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ESIL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.400505878,
+          51.956281667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "47",
+        "DS_name": "Шу",
+        "Code": "SHOO",
+        "Adress": "Республика Казахстан, Жамбыльская, Шуский, г. Шу",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-SHOO",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.765620286,
+          43.602631181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "38",
+        "DS_name": "Отар",
+        "Code": "OTAR",
+        "Adress": "Республика Казахстан, Алматинская, Кордайский, ст. Отар",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-OTAR",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.209977981,
+          43.538671278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "9",
+        "DS_name": "Аркалык",
+        "Code": "ARKL",
+        "Adress": "Республика Казахстан, Костанайская, Аркалык, г. Аркалык",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ARKL",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.914302128,
+          50.250149783
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "7",
+        "DS_name": "Аральск",
+        "Code": "ARSK",
+        "Adress": "Республика Казахстан, Кызылординская, Аральский, г. Аральск",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ARSK",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.680142422,
+          46.800484561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "55",
+        "DS_name": "Уштобе",
+        "Code": "USHB",
+        "Adress": "Республика Казахстан, Алматинская, Каратальский, г. Уштобе",
+        "Receiver_M": "LEICA GRX1200+GNSS",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-USHB",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.973438344,
+          45.242563314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "26",
+        "DS_name": "Жосалы",
+        "Code": "JSLI",
+        "Adress": "Республика Казахстан, Кызылординская, Кармакшинский, п. Жосалы",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-JSLI",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.085497336,
+          45.491000089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "33",
+        "DS_name": "Костанай",
+        "Code": "KOST",
+        "Adress": "Республика Казахстан, Костанайская, Костанай, г. Костанай",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-KOST",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.608113033,
+          53.224554936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "51",
+        "DS_name": "Тараз",
+        "Code": "TARZ",
+        "Adress": "Республика Казахстан, Жамбыльская, Тараз, г. Тараз",
+        "Receiver_M": "LEICA GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-TARZ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.380987797,
+          42.867962019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "14",
+        "DS_name": "Аягоз",
+        "Code": "AJGZ",
+        "Adress": "Республика Казахстан, Восточно-Казахстанская, Аягозский, г. Аягоз",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-AJGZ",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.2631241750,
+          47.5759120340
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": "13",
+        "DS_name": "Атырау",
+        "Code": "ATRU",
+        "Adress": "Республика Казахстан, Атыруская, Атырау, г. Атырау",
+        "Receiver_M": "Leica GR10",
+        "Antenna_mo": "LEIAR25.R4 LEIT",
+        "Mount_poin": "RTK-01-ATRU",
+        "Status": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.953765606,
+          47.130880506
+        ]
+      }
+    }
+  ]
+}
