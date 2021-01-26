@@ -14,19 +14,21 @@
     </vl-layer-tile>
 
     <vl-layer-vector overlay>
-      <vl-source-vector
-        :features.sync="stations"
-        projection="EPSG:4326"
-      ></vl-source-vector>
-      <vl-style-box>
-        <vl-style-circle radius="6">
-          <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
-          <vl-style-stroke
-            width="6"
-            color="rgba(133, 231, 124, 1)"
-          ></vl-style-stroke>
-        </vl-style-circle>
-      </vl-style-box>
+      <vl-interaction-select>
+        <vl-source-vector
+          :features.sync="stations"
+          projection="EPSG:4326"
+        ></vl-source-vector>
+        <vl-style-box>
+          <vl-style-circle radius="6">
+            <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
+            <vl-style-stroke
+              width="6"
+              color="rgba(133, 231, 124, 1)"
+            ></vl-style-stroke>
+          </vl-style-circle>
+        </vl-style-box>
+      </vl-interaction-select>
     </vl-layer-vector>
     <vl-layer-vector z-index="1">
       <vl-source-vector
