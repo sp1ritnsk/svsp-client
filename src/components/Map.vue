@@ -1,45 +1,59 @@
 <template>
-  <vl-map
-    :load-tiles-while-animating="true"
-    :load-tiles-while-interacting="true"
-  >
-    <vl-view
-      :zoom.sync="zoom"
-      :center.sync="center"
-      :rotation.sync="rotation"
-    ></vl-view>
+  <div>
+    <vl-map
+      :load-tiles-while-animating="true"
+      :load-tiles-while-interacting="true"
+    >
+      <vl-view
+        :zoom.sync="zoom"
+        :center.sync="center"
+        :rotation.sync="rotation"
+      ></vl-view>
 
-    <vl-layer-tile id="osm">
-      <vl-source-osm></vl-source-osm>
-    </vl-layer-tile>
+      <vl-layer-tile id="osm">
+        <vl-source-osm></vl-source-osm>
+      </vl-layer-tile>
 
-    <vl-layer-vector overlay>
-      <vl-interaction-select>
+      <vl-layer-vector overlay>
+        <vl-interaction-select>
+          <vl-source-vector
+            :features.sync="stations"
+            projection="EPSG:4326"
+          ></vl-source-vector>
+          <vl-style-box>
+            <vl-style-circle radius="6">
+              <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
+              <vl-style-stroke
+                width="6"
+                color="rgba(133, 231, 124, 1)"
+              ></vl-style-stroke>
+            </vl-style-circle>
+          </vl-style-box>
+        </vl-interaction-select>
+      </vl-layer-vector>
+      <vl-layer-vector z-index="1">
         <vl-source-vector
-          :features.sync="stations"
+          :features.sync="coverageArea"
           projection="EPSG:4326"
         ></vl-source-vector>
         <vl-style-box>
-          <vl-style-circle radius="6">
-            <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
-            <vl-style-stroke
-              width="6"
-              color="rgba(133, 231, 124, 1)"
-            ></vl-style-stroke>
-          </vl-style-circle>
+          <vl-style-fill color="rgba(154, 154, 154, 0.4)"></vl-style-fill>
         </vl-style-box>
-      </vl-interaction-select>
-    </vl-layer-vector>
-    <vl-layer-vector z-index="1">
-      <vl-source-vector
-        :features.sync="coverageArea"
-        projection="EPSG:4326"
-      ></vl-source-vector>
-      <vl-style-box>
-        <vl-style-fill color="rgba(154, 154, 154, 0.4)"></vl-style-fill>
-      </vl-style-box>
-    </vl-layer-vector>
-  </vl-map>
+      </vl-layer-vector>
+    </vl-map>
+  </div>
+</template>
+
+<template>
+  <div>
+    <v-navigation-drawer absolute clipped expand-on-hover>
+      <v-list-item link>
+        <v-list-item-title>
+          Информация о станции
+        </v-list-item-title>
+      </v-list-item>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script>

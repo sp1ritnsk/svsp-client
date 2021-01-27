@@ -73,6 +73,6 @@ body {
 }
 
 .navbar {
-  z-index: 5;
+  z-index: 3;
 }
 </style>
