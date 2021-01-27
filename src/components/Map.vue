@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-navigation-drawer absolute clipped expand-on-hover>
+      <v-list-item link>
+        <v-list-item-title>
+          Информация о станции
+        </v-list-item-title>
+      </v-list-item>
+    </v-navigation-drawer>
+
     <vl-map
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
@@ -41,18 +49,6 @@
         </vl-style-box>
       </vl-layer-vector>
     </vl-map>
-  </div>
-</template>
-
-<template>
-  <div>
-    <v-navigation-drawer absolute clipped expand-on-hover>
-      <v-list-item link>
-        <v-list-item-title>
-          Информация о станции
-        </v-list-item-title>
-      </v-list-item>
-    </v-navigation-drawer>
   </div>
 </template>
 
