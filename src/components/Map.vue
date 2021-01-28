@@ -5,6 +5,9 @@
         <v-list-item-title>
           Информация о станции
         </v-list-item-title>
+        <v-list-item-title>
+          {{ props.properties.DS_name }}
+        </v-list-item-title>
       </v-list-item>
     </v-navigation-drawer>
 
