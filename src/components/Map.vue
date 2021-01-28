@@ -1,19 +1,23 @@
 <template>
-  <div>
-    <v-navigation-drawer absolute clipped expand-on-hover>
+  <div style="height:100%">
+    <!-- <v-navigation-drawer absolute  v-if="selectedFeatures.length > 0">
       <v-list-item link>
+        <v-list-item-title> Информация о станции </v-list-item-title>
         <v-list-item-title>
-          Информация о станции
-        </v-list-item-title>
-        <v-list-item-title>
-          {{ props.properties.DS_name }}
+          {{ selectedFeatures }}
         </v-list-item-title>
       </v-list-item>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
+
+    <div v-if="selectedFeatures.length > 0">
+      {{ selectedFeatures }}
+    </div>
 
     <vl-map
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
+      style="height: 100%"
+      ref="map"
     >
       <vl-view
         :zoom.sync="zoom"
@@ -26,23 +30,22 @@
       </vl-layer-tile>
 
       <vl-layer-vector overlay>
-        <vl-interaction-select>
-          <vl-source-vector
-            :features.sync="stations"
-            projection="EPSG:4326"
-          ></vl-source-vector>
-          <vl-style-box>
-            <vl-style-circle radius="6">
-              <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
-              <vl-style-stroke
-                width="6"
-                color="rgba(133, 231, 124, 1)"
-              ></vl-style-stroke>
-            </vl-style-circle>
-          </vl-style-box>
-        </vl-interaction-select>
+        <vl-source-vector
+          :features.sync="stations"
+          projection="EPSG:4326"
+        ></vl-source-vector>
+        <vl-style-box>
+          <vl-style-circle :radius="6">
+            <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
+            <vl-style-stroke
+              :width="6"
+              color="rgba(133, 231, 124, 1)"
+            ></vl-style-stroke>
+          </vl-style-circle>
+        </vl-style-box>
       </vl-layer-vector>
-      <vl-layer-vector z-index="1">
+
+      <vl-layer-vector :z-index="1">
         <vl-source-vector
           :features.sync="coverageArea"
           projection="EPSG:4326"
@@ -51,6 +54,20 @@
           <vl-style-fill color="rgba(154, 154, 154, 0.4)"></vl-style-fill>
         </vl-style-box>
       </vl-layer-vector>
+      <vl-interaction-select
+        ident="selection"
+        :features.sync="selectedFeatures"
+      >
+        <vl-style-box>
+          <vl-style-circle :radius="6">
+            <vl-style-fill color="rgba(24, 177, 10, 1)"></vl-style-fill>
+            <vl-style-stroke
+              :width="6"
+              color="rgb(223, 62, 62)"
+            ></vl-style-stroke>
+          </vl-style-circle>
+        </vl-style-box>
+      </vl-interaction-select>
     </vl-map>
   </div>
 </template>
@@ -66,7 +83,8 @@ export default {
     center: [7551864, 6063168],
     rotation: 0,
     stations: [],
-    coverageArea: []
+    coverageArea: [],
+    selectedFeatures: []
   }),
   beforeMount() {
     this.getStations();
