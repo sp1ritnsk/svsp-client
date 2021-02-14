@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="navbar">
-      <v-app-bar>
+      <v-app-bar clipped-right>
         <v-img
           contain
           max-height="40"
@@ -99,6 +99,6 @@ body {
 }
 
 .navbar {
-  z-index: 3;
+  z-index: 10;
 }
 </style>

@@ -12,8 +12,12 @@ import auth from "@/store/feathers/feathers.auth";
 
 export default new Vuex.Store({
   plugins: [...servicePlugins, auth],
-  state: {},
-  mutations: {},
+  state: { selectedFeatures: [] },
+  mutations: {
+    setFeature(state, f) {
+      state.selectedFeatures = [...f];
+    }
+  },
   actions: {},
   modules: {}
 });

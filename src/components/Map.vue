@@ -1,18 +1,5 @@
 <template>
   <div style="height:100%">
-    <!-- <v-navigation-drawer absolute  v-if="selectedFeatures.length > 0">
-      <v-list-item link>
-        <v-list-item-title> Информация о станции </v-list-item-title>
-        <v-list-item-title>
-          {{ selectedFeatures }}
-        </v-list-item-title>
-      </v-list-item>
-    </v-navigation-drawer> -->
-
-    <div v-if="selectedFeatures.length > 0">
-      {{ selectedFeatures }}
-    </div>
-
     <vl-map
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
@@ -74,6 +61,7 @@
 
 <script>
 import buffer from "@turf/buffer";
+import { mapState } from "vuex";
 
 export default {
   name: "Map",
@@ -83,9 +71,19 @@ export default {
     center: [7551864, 6063168],
     rotation: 0,
     stations: [],
-    coverageArea: [],
-    selectedFeatures: []
+    coverageArea: []
+    // selectedFeatures: [],
   }),
+  computed: {
+    selectedFeatures: {
+      get() {
+        return this.$store.state.selectedFeatures;
+      },
+      set(feature) {
+        this.$store.commit("setFeature", feature);
+      }
+    }
+  },
   beforeMount() {
     this.getStations();
   },
