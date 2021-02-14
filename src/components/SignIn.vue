@@ -1,10 +1,10 @@
 <template>
-  <v-form ref="form" @submit.prevent="signUp(email, password)">
+  <v-form ref="form" @submit.prevent="signIn(email, password)">
     <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="10" md="8" lg="4">
           <v-card class="mt-5" elevation="6">
-            <v-card-title>РЕГИСТРАЦИЯ В СИСТЕМЕ</v-card-title>
+            <v-card-title>ВХОД В СИСТЕМУ</v-card-title>
             <v-card-text>
               <v-text-field
                 ref="email"
@@ -26,8 +26,8 @@
             <v-card-text class="pt-0">
               <v-divider></v-divider>
               <p class="ma-2">
-                Уже зарегистрированы?
-                <router-link to="/signin">Войдите</router-link>
+                Еще не зарегистрированы?
+                <router-link to="/signup">Зарегистрируйтесь</router-link>
               </p>
             </v-card-text>
           </v-card>
@@ -51,24 +51,22 @@ export default {
       this.error = undefined;
       // this.clearCreateError();
     },
-    signUp(email, password) {
+    signIn(email, password) {
       this.dismissError();
       // Automatically log the user in after successful signup.
-      this.createUser({ email, password })
-        .then(response => {
-          console.log(response);
-          this.authenticate({ strategy: "local", email, password });
+      this.authenticate({ strategy: "local", email, password })
+        .then(() => {
+          this.$router.push("/map");
         })
         // Just use the returned error instead of mapping it from the store.
         .catch(error => {
-          // Convert the error to a plain object and add a message.
           let message = error.message;
-          console.log(error);
+          // console.log(error)
           // error = Object.assign({}, error);
           error.message =
             message == "email: value already exists."
               ? "Пользователь с таким email адресом уже зарегистрирован."
-              : "Произошла ошибка при регистрации. Проверте форму и попробуйте еще раз.";
+              : "Произошла ошибка при входе. Проверте форму и попробуйте еще раз.";
           this.error = error;
           console.log(error.message);
         });
@@ -83,9 +81,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-html {
-  overflow: hidden;
-}
-</style>

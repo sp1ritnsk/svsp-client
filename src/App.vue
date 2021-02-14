@@ -44,8 +44,11 @@
             Цены
           </v-btn>
         </v-toolbar-items>
-        <v-btn dark to="/signup" color="indigo">
+        <v-btn v-if="!user" dark to="/signin" color="indigo">
           Вход/Регистрация
+        </v-btn>
+        <v-btn v-if="user" dark @click="logOut()" color="indigo">
+          Выход
         </v-btn>
       </v-app-bar>
     </div>
@@ -55,6 +58,8 @@
 </template>
 
 <script>
+import { mapMutations, mapActions } from "vuex";
+
 export default {
   name: "App",
 
@@ -62,7 +67,28 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+  computed: {
+    // The user is automatically set by the feathers-vuex auth module upon login.
+    user() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    logOut() {
+      this.logout().catch(error => {
+        console.log(error);
+      });
+    },
+    ...mapActions("auth", ["authenticate", "logout"])
+  },
+  mounted() {
+    this.$store.dispatch("auth/authenticate").catch(error => {
+      if (!error.message.includes("Could not find stored JWT")) {
+        console.error(error);
+      }
+    });
+  }
 };
 </script>
 

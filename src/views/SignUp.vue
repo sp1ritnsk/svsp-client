@@ -6,7 +6,7 @@
 import SignUp from "../components/SignUp";
 
 export default {
-  name: "MapView",
+  name: "SignUpView",
   components: {
     SignUp
   }
