@@ -56,7 +56,7 @@ export default {
       // Automatically log the user in after successful signup.
       this.authenticate({ strategy: "local", email, password })
         .then(() => {
-          this.$router.push("/map");
+          this.$router.push("/account");
         })
         // Just use the returned error instead of mapping it from the store.
         .catch(error => {

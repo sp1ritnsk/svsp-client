@@ -44,11 +44,11 @@
             Цены
           </v-btn>
         </v-toolbar-items>
+        <v-btn color="primary" to="/account" v-if="user">
+          Аккаунт
+        </v-btn>
         <v-btn v-if="!user" dark to="/signin" color="indigo">
           Вход/Регистрация
-        </v-btn>
-        <v-btn v-if="user" dark @click="logOut()" color="indigo">
-          Выход
         </v-btn>
       </v-app-bar>
     </div>
@@ -85,7 +85,7 @@ export default {
   mounted() {
     this.$store.dispatch("auth/authenticate").catch(error => {
       if (!error.message.includes("Could not find stored JWT")) {
-        console.error(error);
+        console.log("Could not find stored JWT");
       }
     });
   }
