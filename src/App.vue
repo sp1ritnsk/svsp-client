@@ -44,7 +44,7 @@
             Цены
           </v-btn>
         </v-toolbar-items>
-        <v-btn dark to="/" color="indigo">
+        <v-btn dark to="/signup" color="indigo">
           Вход/Регистрация
         </v-btn>
       </v-app-bar>
