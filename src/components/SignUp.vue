@@ -49,7 +49,7 @@ export default {
       this.createUser({ email, password })
         .then(response => {
           console.log(response);
-          this.authenticate({ strategy: "local", email, password });
+          // this.authenticate({ strategy: "local", email, password });
         })
         // Just use the returned error instead of mapping it from the store.
         .catch(error => {
