@@ -142,6 +142,7 @@ export default {
       phone,
       plan
     ) {
+      console.log(this.createOrder);
       this.createOrder({
         name,
         surname,
@@ -159,7 +160,7 @@ export default {
         console.log(response);
       });
     },
-    ...mapActions("order", {
+    ...mapActions("orders", {
       createOrder: "create"
     })
   },

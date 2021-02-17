@@ -9,7 +9,7 @@ const servicePath = "feathers";
 const servicePlugin = makeServicePlugin({
   Model,
   servicePath,
-  namespace: "order",
+  namespace: "orders",
   service: feathersClient.service(servicePath),
   state: {},
   getters: {},
