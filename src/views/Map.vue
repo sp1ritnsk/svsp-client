@@ -7,15 +7,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-navigation-drawer
-      width="256"
-      hide-overlay
-      right
-      absolute
-      v-model="drawer"
-      clipped
-      app
-    >
+    <v-navigation-drawer absolute width="600" right v-model="drawer">
       <Order />
     </v-navigation-drawer>
   </v-main>
