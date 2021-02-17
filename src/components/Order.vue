@@ -80,6 +80,7 @@
               v-model="plan"
               :items="products"
             ></v-select>
+            <v-btn type="submit">создать подписку</v-btn>
           </v-card-text>
         </v-card>
       </v-col>
@@ -104,6 +105,7 @@ export default {
     phone: undefined,
     plan: undefined
   }),
+  methods: {},
   computed: {
     ...mapState(["selectedFeatures"])
   }
