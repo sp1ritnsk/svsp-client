@@ -5,7 +5,7 @@ export default class orders extends BaseModel {
     super(data, options);
   }
 
-  static modelName = "orders";
+  static modelName = "Order";
 
   // eslint-disable-next-line no-unused-vars
   static instanceDefaults(data, { models, store }) {
