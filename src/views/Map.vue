@@ -7,7 +7,13 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-navigation-drawer absolute width="600" right v-model="drawer">
+    <v-navigation-drawer
+      v-if="selectedFeatures.length > 0"
+      absolute
+      width="600"
+      right
+      v-model="drawer"
+    >
       <Order />
     </v-navigation-drawer>
   </v-main>
@@ -16,6 +22,7 @@
 <script>
 import Map from "../components/Map.vue";
 import Order from "../components/Order.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "MapView",
@@ -25,6 +32,9 @@ export default {
   components: {
     Map,
     Order
+  },
+  computed: {
+    ...mapState(["selectedFeatures"])
   }
 };
 </script>

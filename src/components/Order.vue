@@ -22,7 +22,7 @@
       <v-row>
         <v-col>
           <v-card flat>
-            <v-card-text v-if="selectedFeatures.length > 0">
+            <v-card-text>
               <v-list-item-title>
                 <h4>{{ selectedFeatures[0].properties.DS_name }}</h4>
               </v-list-item-title>
@@ -159,7 +159,7 @@ export default {
         console.log(response);
       });
     },
-    ...mapActions("Order", {
+    ...mapActions("order", {
       createOrder: "create"
     })
   },
