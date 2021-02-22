@@ -156,8 +156,8 @@ export default {
       begin_date,
       company
     ) {
-      console.log(this.createOrder);
       this.createOrder({
+        user: this.user,
         firstname,
         lastname,
         bin,

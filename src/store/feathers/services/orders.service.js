@@ -13,9 +13,9 @@ const servicePlugin = makeServicePlugin({
   service: feathersClient.service(servicePath),
   state: {},
   getters: {
-    orders: state => id => {
-      return state.orders;
-    }
+    // orders: state => id => {
+    //   return state.orders;
+    // }
   },
   mutations: {},
   actions: {}
