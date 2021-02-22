@@ -14,7 +14,9 @@
         city,
         address,
         phone,
-        plan
+        plan,
+        begin_date,
+        company
       )
     "
   >
@@ -65,6 +67,12 @@
               <v-text-field ref="surname" v-model="surname" label="Фамилия">
               </v-text-field>
               <v-text-field
+                ref="company"
+                v-model="company"
+                label="Наименование компании"
+              >
+              </v-text-field>
+              <v-text-field
                 ref="loginNTRIP"
                 v-model="loginNTRIP"
                 label="Логин NTRIP"
@@ -96,6 +104,12 @@
               </v-text-field>
               <v-text-field ref="phone" v-model="phone" label="Телефон">
               </v-text-field>
+              <v-text-field
+                ref="begin_date"
+                v-model="begin_date"
+                label="Телефон"
+              >
+              </v-text-field>
               <v-select
                 label="План подписки"
                 v-model="plan"
@@ -114,6 +128,7 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data: () => ({
+    company: undefined,
     name: undefined,
     surname: undefined,
     loginNTRIP: undefined,
@@ -125,7 +140,16 @@ export default {
     city: undefined,
     address: undefined,
     phone: undefined,
-    plan: undefined
+    plan: undefined,
+    begin_date: undefined,
+    products: [
+      "RTK 1 месяц",
+      "RTK 3 месяца",
+      "RTK 6 месяцев",
+      "RTK 12 месяцев",
+      "PP Extended",
+      "RTK test 1 день"
+    ]
   }),
   methods: {
     order(
@@ -140,7 +164,9 @@ export default {
       city,
       address,
       phone,
-      plan
+      plan,
+      begin_date,
+      company
     ) {
       console.log(this.createOrder);
       this.createOrder({
@@ -155,7 +181,9 @@ export default {
         city,
         address,
         phone,
-        plan
+        plan,
+        begin_date,
+        company
       }).then(response => {
         console.log(response);
       });

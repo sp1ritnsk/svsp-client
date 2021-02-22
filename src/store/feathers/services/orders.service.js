@@ -4,7 +4,7 @@ import feathersClient, {
 
 import Model from "../models/orders.model.js";
 
-const servicePath = "feathers";
+const servicePath = "orders";
 // for more information see https://vuex.feathersjs.com/service-plugin.html#configuration
 const servicePlugin = makeServicePlugin({
   Model,

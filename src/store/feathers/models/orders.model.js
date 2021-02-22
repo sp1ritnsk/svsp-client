@@ -10,6 +10,20 @@ export default class orders extends BaseModel {
   // eslint-disable-next-line no-unused-vars
   static instanceDefaults(data, { models, store }) {
     return {
+      name: "",
+      surname: "",
+      loginNTRIP: "",
+      passwordNTRIP: "",
+      bin: "",
+      iin: "",
+      region: "",
+      district: "",
+      city: "",
+      address: "",
+      phone: "",
+      plan: "",
+      begin_date: "",
+      company: ""
       // write your default properties for reactivity here; see: https://vuex.feathersjs.com/model-classes.html#instancedefaults
     };
   }

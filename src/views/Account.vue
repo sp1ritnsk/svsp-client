@@ -3,7 +3,10 @@
     <v-row>
       <v-col>
         <v-card>
-          <v-card-title v-if="user"> Вы вошли как {{ user }} </v-card-title>
+          <v-card-title v-if="user">
+            Вы вошли как: {{ user.email }}
+          </v-card-title>
+          <v-card-title v-if="user"> Подписки {{ orders }} </v-card-title>
           <v-card-text>
             <v-btn v-if="user" dark @click="logOut()" color="indigo">
               Выход
@@ -23,7 +26,8 @@ export default {
     // data
   }),
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState("auth", ["user"]),
+    ...mapState("orders", ["orders"])
     // user() {
     //   return this.$store.state.auth.user
     // }
