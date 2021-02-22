@@ -12,7 +12,11 @@ const servicePlugin = makeServicePlugin({
   namespace: "orders",
   service: feathersClient.service(servicePath),
   state: {},
-  getters: {},
+  getters: {
+    orders: state => id => {
+      return state.orders;
+    }
+  },
   mutations: {},
   actions: {}
 });

@@ -3,10 +3,8 @@
     ref="form"
     @submit.prevent="
       order(
-        name,
-        surname,
-        loginNTRIP,
-        passwordNTRIP,
+        firstname,
+        lastname,
         bin,
         iin,
         region,
@@ -26,33 +24,33 @@
           <v-card flat>
             <v-card-text>
               <v-list-item-title>
-                <h4>{{ selectedFeatures[0].properties.DS_name }}</h4>
+                <h3>{{ selectedFeatures[0].properties.DS_name }}</h3>
               </v-list-item-title>
               <v-list-item-title>
-                <h4>{{ selectedFeatures[0].properties.Adress }}</h4>
+                <h3>{{ selectedFeatures[0].properties.Adress }}</h3>
               </v-list-item-title>
               <v-list-item-title>
-                <h4>
+                <h3>
                   Модель приемника:
                   {{ selectedFeatures[0].properties.Receiver_M }}
-                </h4>
+                </h3>
               </v-list-item-title>
               <v-list-item-title>
-                <h4>
+                <h3>
                   Модель антенны:
                   {{ selectedFeatures[0].properties.Antenna_mo }}
-                </h4>
+                </h3>
               </v-list-item-title>
               <v-list-item-title>
-                <h4>
+                <h3>
                   Точка подключения:
                   {{ selectedFeatures[0].properties.Mount_poin }}
-                </h4>
+                </h3>
               </v-list-item-title>
               <v-list-item-title>
-                <h4>
+                <h3>
                   Координаты: {{ selectedFeatures[0].geometry.coordinates }}
-                </h4>
+                </h3>
               </v-list-item-title>
             </v-card-text>
           </v-card>
@@ -60,28 +58,22 @@
       </v-row>
       <v-row>
         <v-col>
+          <router-link dark to="/signin">Войдите</router-link> для создания
+          подписки
+        </v-col>
+      </v-row>
+      <v-row v-if="user">
+        <v-col>
           <v-card flat>
             <v-card-text>
-              <v-text-field ref="name" v-model="name" label="Имя">
+              <v-text-field ref="firstname" v-model="firstname" label="Имя">
               </v-text-field>
-              <v-text-field ref="surname" v-model="surname" label="Фамилия">
+              <v-text-field ref="lastname" v-model="lastname" label="Фамилия">
               </v-text-field>
               <v-text-field
                 ref="company"
                 v-model="company"
                 label="Наименование компании"
-              >
-              </v-text-field>
-              <v-text-field
-                ref="loginNTRIP"
-                v-model="loginNTRIP"
-                label="Логин NTRIP"
-              >
-              </v-text-field>
-              <v-text-field
-                ref="passwordNTRIP"
-                v-model="passwordNTRIP"
-                label="Пароль NTRIP"
               >
               </v-text-field>
               <v-text-field ref="bin" v-model="bin" label="БИН"> </v-text-field>
@@ -115,7 +107,7 @@
                 v-model="plan"
                 :items="products"
               ></v-select>
-              <v-btn type="submit">создать подписку</v-btn>
+              <v-btn color="blue" dark type="submit">Отправить запрос</v-btn>
             </v-card-text>
           </v-card>
         </v-col>
@@ -129,10 +121,8 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data: () => ({
     company: undefined,
-    name: undefined,
-    surname: undefined,
-    loginNTRIP: undefined,
-    passwordNTRIP: undefined,
+    firstname: undefined,
+    lastname: undefined,
     bin: undefined,
     iin: undefined,
     region: undefined,
@@ -153,10 +143,8 @@ export default {
   }),
   methods: {
     order(
-      name,
-      surname,
-      loginNTRIP,
-      passwordNTRIP,
+      firstname,
+      lastname,
       bin,
       iin,
       region,
@@ -170,10 +158,8 @@ export default {
     ) {
       console.log(this.createOrder);
       this.createOrder({
-        name,
-        surname,
-        loginNTRIP,
-        passwordNTRIP,
+        firstname,
+        lastname,
         bin,
         iin,
         region,
@@ -193,7 +179,8 @@ export default {
     })
   },
   computed: {
-    ...mapState(["selectedFeatures"])
+    ...mapState(["selectedFeatures"]),
+    ...mapState("auth", ["user"])
   }
 };
 </script>
