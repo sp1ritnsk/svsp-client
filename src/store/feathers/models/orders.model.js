@@ -17,6 +17,7 @@ export default class orders extends BaseModel {
   // eslint-disable-next-line no-unused-vars
   static setupInstance(data, { models, store }) {
     // use this for transforming your data, e.g. transform a Date-string into a Date object; see: https://vuex.feathersjs.com/model-classes.html#setupinstance
+
     return data;
   }
 }

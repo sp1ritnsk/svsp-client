@@ -12,3 +12,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+// .v-main {
+// 	background-image: url('../assets/background.jpg');
+//   background-size: cover;
+// }
+</style>

@@ -1,118 +1,100 @@
 <template>
-  <v-form
-    ref="form"
-    @submit.prevent="
-      order(
-        firstname,
-        lastname,
-        bin,
-        iin,
-        region,
-        district,
-        city,
-        address,
-        phone,
-        plan,
-        begin_date,
-        company
-      )
-    "
-  >
-    <v-container>
-      <v-row>
-        <v-col>
-          <v-card flat>
-            <v-card-text>
-              <v-list-item-title>
-                <h3>{{ selectedFeatures[0].properties.DS_name }}</h3>
-              </v-list-item-title>
-              <v-list-item-title>
-                <h3>{{ selectedFeatures[0].properties.Adress }}</h3>
-              </v-list-item-title>
-              <v-list-item-title>
-                <h3>
-                  Модель приемника:
-                  {{ selectedFeatures[0].properties.Receiver_M }}
-                </h3>
-              </v-list-item-title>
-              <v-list-item-title>
-                <h3>
-                  Модель антенны:
-                  {{ selectedFeatures[0].properties.Antenna_mo }}
-                </h3>
-              </v-list-item-title>
-              <v-list-item-title>
-                <h3>
-                  Точка подключения:
-                  {{ selectedFeatures[0].properties.Mount_poin }}
-                </h3>
-              </v-list-item-title>
-              <v-list-item-title>
-                <h3>
-                  Координаты: {{ selectedFeatures[0].geometry.coordinates }}
-                </h3>
-              </v-list-item-title>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <router-link dark to="/signin">Войдите</router-link> для создания
-          подписки
-        </v-col>
-      </v-row>
-      <v-row v-if="user">
-        <v-col>
-          <v-card flat>
-            <v-card-text>
-              <v-text-field ref="firstname" v-model="firstname" label="Имя">
-              </v-text-field>
-              <v-text-field ref="lastname" v-model="lastname" label="Фамилия">
-              </v-text-field>
-              <v-text-field
-                ref="company"
-                v-model="company"
-                label="Наименование компании"
-              >
-              </v-text-field>
-              <v-text-field ref="bin" v-model="bin" label="БИН"> </v-text-field>
-              <v-text-field ref="iin" v-model="iin" label="ИИН"> </v-text-field>
-              <v-text-field
-                ref="region"
-                v-model="region"
-                label="Регион или область"
-              >
-              </v-text-field>
-              <v-text-field ref="district" v-model="district" label="Район">
-              </v-text-field>
-              <v-text-field
-                ref="city"
-                v-model="city"
-                label="Город или населеный пункт"
-              >
-              </v-text-field>
-              <v-text-field ref="address" v-model="address" label="Адрес">
-              </v-text-field>
-              <v-text-field ref="phone" v-model="phone" label="Телефон">
-              </v-text-field>
-              <v-text-field
-                ref="begin_date"
-                v-model="begin_date"
-                label="Телефон"
-              >
-              </v-text-field>
-              <v-select
-                label="План подписки"
-                v-model="plan"
-                :items="products"
-              ></v-select>
-              <v-btn color="blue" dark type="submit">Отправить запрос</v-btn>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+  <v-form v-if="user" ref="form" @submit.prevent="submitOrder()">
+    <v-card flat>
+      <v-card-title class="pb-3">
+        <div class="text-h5">Подача заявки</div>
+      </v-card-title>
+      <v-card-text>
+        <v-select
+          label="Станции"
+          :items.sync="stations"
+          v-model="selectedFeatures"
+          dense
+          outlined
+          multiple
+          item-text="properties.DS_name"
+          return-object
+        ></v-select>
+        <v-text-field
+          outlined
+          dense
+          ref="region"
+          v-model="region"
+          label="Регион или область"
+        >
+        </v-text-field>
+        <v-text-field
+          outlined
+          dense
+          ref="district"
+          v-model="district"
+          label="Район"
+        >
+        </v-text-field>
+        <v-text-field
+          outlined
+          dense
+          ref="city"
+          v-model="city"
+          label="Город или населеный пункт"
+        >
+        </v-text-field>
+        <v-text-field
+          outlined
+          dense
+          ref="address"
+          v-model="address"
+          label="Адрес"
+        >
+        </v-text-field>
+        <v-menu
+          ref="menu"
+          v-model="menu"
+          :close-on-content-click="false"
+          :return-value.sync="begin_date"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="begin_date"
+              label="Дата начала подписки"
+              append-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+              outlined
+              dense
+            ></v-text-field>
+          </template>
+          <v-date-picker v-model="begin_date" no-title scrollable>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="menu = false">
+              Отмена
+            </v-btn>
+            <v-btn text color="primary" @click="$refs.menu.save(begin_date)">
+              OK
+            </v-btn>
+          </v-date-picker>
+        </v-menu>
+        <v-select
+          dense
+          outlined
+          label="План подписки"
+          v-model="plan"
+          :items="plans"
+        ></v-select>
+        <v-row class="px-0" align="center" justify="space-around">
+          <v-btn class="mx-0" color="blue" dark type="submit"
+            >Отправить заявку</v-btn
+          >
+          <v-btn class="mx-0" color="grey-lighten-1" @click="cancelOrder"
+            >Отмена</v-btn
+          >
+        </v-row>
+      </v-card-text>
+    </v-card>
   </v-form>
 </template>
 
@@ -120,6 +102,7 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data: () => ({
+    menu: false,
     company: undefined,
     firstname: undefined,
     lastname: undefined,
@@ -132,55 +115,76 @@ export default {
     phone: undefined,
     plan: undefined,
     begin_date: undefined,
-    products: [
+    plans: [
       "RTK 1 месяц",
       "RTK 3 месяца",
       "RTK 6 месяцев",
       "RTK 12 месяцев",
       "PP Extended",
-      "RTK test 1 день"
+      "RTK Test 1 день"
+    ],
+    statuses: [
+      { status: "new", alias: "Новая" },
+      { status: "pending", alias: "На рассмотрении" },
+      { status: "payment", alias: "Ожидает оплаты" },
+      { status: "active", alias: "Активная" }
     ]
   }),
+  props: {
+    isOrderCreating: Boolean
+  },
   methods: {
-    order(
-      firstname,
-      lastname,
-      bin,
-      iin,
-      region,
-      district,
-      city,
-      address,
-      phone,
-      plan,
-      begin_date,
-      company
-    ) {
-      this.createOrder({
-        user: this.user,
-        firstname,
-        lastname,
-        bin,
-        iin,
-        region,
-        district,
-        city,
-        address,
-        phone,
-        plan,
-        begin_date,
-        company
-      }).then(response => {
-        console.log(response);
+    cancelOrder() {
+      this.$emit("cancelOrder");
+    },
+    stationNames(arr) {
+      return arr.map(val => {
+        return val.properties.DS_name;
       });
+    },
+    submitOrder() {
+      let stationNames = this.stationNames(this.selectedFeatures);
+      // console.log(this.user)
+      this.createOrder({
+        stations: stationNames,
+        user: this.user,
+        // firstname: this.firstname,
+        // lastname: this.lastname,
+        // bin: this.bin,
+        // iin: this.iin,
+        region: this.region,
+        district: this.district || "не указан",
+        city: this.city,
+        address: this.address,
+        // phone: this.phone,
+        plan: this.plan,
+        begin_date: this.begin_date,
+        // company: this.company,
+        status: "new"
+      })
+        .then(() => {
+          this.$router.push("/account");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     ...mapActions("orders", {
       createOrder: "create"
     })
   },
   computed: {
-    ...mapState(["selectedFeatures"]),
-    ...mapState("auth", ["user"])
+    // ...mapState(['selectedFeatures']),
+    ...mapState("auth", ["user"]),
+    ...mapState(["stations", "selectedFeatures"]),
+    selectedFeatures: {
+      get() {
+        return this.$store.state.selectedFeatures;
+      },
+      set(features) {
+        this.$store.commit("setSelectedFeatures", features);
+      }
+    }
   }
 };
 </script>
