@@ -11,7 +11,8 @@
         phone,
         type,
         iin,
-        bin
+        bin,
+        checkbox
       )
     "
   >
@@ -28,6 +29,9 @@
                 required
                 outlined
                 dense
+                :error-messages="emailErrors"
+                @change="$v.email.$touch()"
+                @blur="$v.email.$touch()"
               >
               </v-text-field>
               <v-text-field
@@ -37,6 +41,9 @@
                 outlined
                 type="password"
                 dense
+                :error-messages="passwordErrors"
+                @change="$v.password.$touch()"
+                @blur="$v.password.$touch()"
               ></v-text-field>
               <v-text-field
                 ref="firstname"
@@ -45,6 +52,9 @@
                 outlined
                 required
                 dense
+                :error-messages="firstnameErrors"
+                @change="$v.firstname.$touch()"
+                @blur="$v.firstname.$touch()"
               ></v-text-field>
               <v-text-field
                 ref="lastname"
@@ -53,6 +63,9 @@
                 outlined
                 required
                 dense
+                :error-messages="lastnameErrors"
+                @change="$v.lastname.$touch()"
+                @blur="$v.lastname.$touch()"
               ></v-text-field>
               <v-text-field
                 ref="patronym"
@@ -61,6 +74,9 @@
                 outlined
                 required
                 dense
+                :error-messages="patronymErrors"
+                @change="$v.patronym.$touch()"
+                @blur="$v.patronym.$touch()"
               ></v-text-field>
               <v-text-field
                 ref="phone"
@@ -69,6 +85,9 @@
                 outlined
                 required
                 dense
+                :error-messages="phoneErrors"
+                @change="$v.phone.$touch()"
+                @blur="$v.phone.$touch()"
               ></v-text-field>
               <v-select
                 :items="types"
@@ -97,8 +116,18 @@
                 required
                 dense
                 v-if="type === 'Юридическое лицо'"
+                :error-messages="binErrors"
+                @change="$v.bin.$touch()"
+                @blur="$v.bin.$touch()"
               ></v-text-field>
-              <v-checkbox v-model="checkbox" class="pt-0 mt-0">
+              <v-checkbox
+                v-model="checkbox"
+                class="pt-0 mt-0"
+                :error-messages="checkboxErrors"
+                required
+                @change="$v.checkbox.$touch()"
+                @blur="$v.checkbox.$touch()"
+              >
                 <template v-slot:label>
                   <div>
                     Ознакомлен(а) и согласен(а) с
@@ -114,7 +143,13 @@
                   </div>
                 </template>
               </v-checkbox>
-              <v-btn color="blue" dark type="submit">Отправить</v-btn>
+              <v-btn
+                :disabled="!checkbox"
+                color="blue"
+                :dark="checkbox"
+                type="submit"
+                >Отправить</v-btn
+              >
             </v-card-text>
             <v-card-text class="pt-0">
               <v-divider></v-divider>
@@ -127,14 +162,68 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-snackbar v-model="snackbar" :timeout="2000">
+      <span>Проверьте форму и повторите отправку</span>
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-form>
 </template>
 
 <script>
 import { mapMutations, mapActions } from "vuex";
+import { validationMixin } from "vuelidate";
+import {
+  required,
+  minLength,
+  maxLength,
+  email,
+  helpers,
+  integer
+} from "vuelidate/lib/validators";
 
 export default {
+  mixins: [validationMixin],
+
+  validations: {
+    email: { required, email },
+    password: {
+      required,
+      minLength: minLength(8),
+      matchRegex: function(value) {
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,24}$/.test(value);
+      }
+    },
+    iin: {
+      required,
+      integer,
+      minLength: minLength(12),
+      maxLength: maxLength(12)
+    },
+    bin: {
+      required,
+      integer,
+      minLength: minLength(12),
+      maxLength: maxLength(12)
+    },
+    firstname: { required },
+    lastname: { required },
+    patronym: { required },
+    checkbox: {
+      checked(val) {
+        return val;
+      }
+    },
+    type: { required },
+    phone: { required }
+  },
+
   data: () => ({
+    snackbar: false,
     email: undefined,
     password: undefined,
     error: undefined,
@@ -146,8 +235,70 @@ export default {
     type: "Физическое лицо",
     iin: undefined,
     bin: undefined,
-    checkbox: false
+    checkbox: false,
+    isValid: false
   }),
+  computed: {
+    checkboxErrors() {
+      const errors = [];
+      if (!this.$v.checkbox.$dirty) return errors;
+      !this.$v.checkbox.checked &&
+        errors.push("Для продолжения регистрации необходимо согласие!");
+      return errors;
+    },
+    firstnameErrors() {
+      const errors = [];
+      if (!this.$v.firstname.$dirty) return errors;
+      !this.$v.firstname.required && errors.push("Укажите имя");
+      return errors;
+    },
+    lastnameErrors() {
+      const errors = [];
+      if (!this.$v.lastname.$dirty) return errors;
+      !this.$v.lastname.required && errors.push("Укажите фамилию");
+      return errors;
+    },
+    patronymErrors() {
+      const errors = [];
+      if (!this.$v.patronym.$dirty) return errors;
+      !this.$v.patronym.required && errors.push("Укажите отчество");
+      return errors;
+    },
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Неверный формат email");
+      !this.$v.email.required && errors.push("Укажите email");
+      return errors;
+    },
+    passwordErrors() {
+      const errors = [];
+      if (!this.$v.password.$dirty) return errors;
+      !this.$v.password.required && errors.push("Укажите пароль");
+      !this.$v.password.minLength &&
+        errors.push("Пароль должен быть больше 7 символов");
+      !this.$v.password.matchRegex &&
+        errors.push(
+          "Пароль должен содержать цифры, латинские строчные и прописные буквы"
+        );
+      return errors;
+    },
+    binErrors() {
+      const errors = [];
+      if (!this.$v.bin.$dirty) return errors;
+      !this.$v.bin.required && errors.push("Укажите БИН");
+      !this.$v.bin.integer && errors.push("Не верный формат БИН");
+      !this.$v.bin.minLength && errors.push("БИН должен состоять из 12 чисел");
+      !this.$v.bin.maxLength && errors.push("БИН должен состоять из 12 чисел");
+      return errors;
+    },
+    phoneErrors() {
+      const errors = [];
+      if (!this.$v.phone.$dirty) return errors;
+      !this.$v.phone.required && errors.push("Укажите номер телефона");
+      return errors;
+    }
+  },
   methods: {
     dismissError() {
       this.error = undefined;
@@ -162,39 +313,47 @@ export default {
       phone,
       type,
       iin,
-      bin
+      bin,
+      checkbox
     ) {
       this.dismissError();
-      // Automatically log the user in after successful signup.
-      this.createUser({
-        email,
-        password,
-        firstname,
-        lastname,
-        patronym,
-        phone,
-        type,
-        iin,
-        bin
-      })
-        .then(response => {
-          this.authenticate({ strategy: "local", email, password }).then(() =>
-            this.$router.push("/account")
-          );
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log(this.snackbar);
+        this.snackbar = true;
+      } else {
+        this.isValid = true;
+        // Automatically log the user in after successful signup.
+        this.createUser({
+          email,
+          password,
+          firstname,
+          lastname,
+          patronym,
+          phone,
+          type,
+          iin,
+          bin
         })
-        // Just use the returned error instead of mapping it from the store.
-        .catch(error => {
-          // Convert the error to a plain object and add a message.
-          let message = error.message;
-          console.log(error);
-          // error = Object.assign({}, error);
-          error.message =
-            message == "email: value already exists."
-              ? "Пользователь с таким email адресом уже зарегистрирован."
-              : "Произошла ошибка при регистрации. Проверте форму и попробуйте еще раз.";
-          this.error = error;
-          console.log(error.message);
-        });
+          .then(response => {
+            this.authenticate({ strategy: "local", email, password }).then(() =>
+              this.$router.push("/account")
+            );
+          })
+          // Just use the returned error instead of mapping it from the store.
+          .catch(error => {
+            // Convert the error to a plain object and add a message.
+            let message = error.message;
+            console.log(error);
+            // error = Object.assign({}, error);
+            error.message =
+              message == "email: value already exists."
+                ? "Пользователь с таким email адресом уже зарегистрирован."
+                : "Произошла ошибка при регистрации. Проверте форму и попробуйте еще раз.";
+            this.error = error;
+            console.log(error.message);
+          });
+      }
     },
     ...mapActions("users", {
       createUser: "create"

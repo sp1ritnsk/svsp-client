@@ -29,7 +29,9 @@
                 </div>
               </v-card-text>
               <v-card-actions>
-                <v-btn color="primary" to="/signin">Войти</v-btn>
+                <v-row align="center" justify="space-around" class="pb-4 pt-2">
+                  <v-btn color="primary" to="/signin">Войти</v-btn>
+                </v-row>
               </v-card-actions>
             </v-card>
             <v-card flat v-if="user && !isOrderCreating">
@@ -39,7 +41,7 @@
                 </div>
               </v-card-text>
               <v-card-actions>
-                <v-row align="center" justify="space-around" class="pb-4">
+                <v-row align="center" justify="space-around" class="pb-4 pt-2">
                   <v-btn
                     @click="isOrderCreating = !isOrderCreating"
                     color="primary"

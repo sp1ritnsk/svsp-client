@@ -10,8 +10,12 @@
                 ref="email"
                 v-model="email"
                 label="Email"
+                autocomplete="on"
                 required
                 outlined
+                :error-messages="emailErrors"
+                @change="$v.email.$touch()"
+                @blur="$v.email.$touch()"
               >
               </v-text-field>
               <v-text-field
@@ -34,18 +38,48 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-snackbar v-model="snackbar" :timeout="2000">
+      <span>Проверьте форму и повторите отправку</span>
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-form>
 </template>
 
 <script>
 import { mapMutations, mapActions } from "vuex";
+import { validationMixin } from "vuelidate";
+import {
+  required,
+  minLength,
+  maxLength,
+  email
+} from "vuelidate/lib/validators";
 
 export default {
+  mixins: [validationMixin],
+  validations: {
+    email: { required, email }
+  },
   data: () => ({
     email: undefined,
     password: undefined,
-    error: undefined
+    error: undefined,
+    snackbar: false
   }),
+  computed: {
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Неверный формат email");
+      !this.$v.email.required && errors.push("Укажите email");
+      return errors;
+    }
+  },
   methods: {
     dismissError() {
       this.error = undefined;
@@ -53,23 +87,29 @@ export default {
     },
     signIn(email, password) {
       this.dismissError();
-      // Automatically log the user in after successful signup.
-      this.authenticate({ strategy: "local", email, password })
-        .then(() => {
-          this.$router.push("/account");
-        })
-        // Just use the returned error instead of mapping it from the store.
-        .catch(error => {
-          let message = error.message;
-          // console.log(error)
-          // error = Object.assign({}, error);
-          error.message =
-            message == "email: value already exists."
-              ? "Пользователь с таким email адресом уже зарегистрирован."
-              : "Произошла ошибка при входе. Проверте форму и попробуйте еще раз.";
-          this.error = error;
-          console.log(error.message);
-        });
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log(this.snackbar);
+        this.snackbar = true;
+      } else {
+        // Automatically log the user in after successful signup.
+        this.authenticate({ strategy: "local", email, password })
+          .then(() => {
+            this.$router.push("/account");
+          })
+          // Just use the returned error instead of mapping it from the store.
+          .catch(error => {
+            let message = error.message;
+            // console.log(error)
+            // error = Object.assign({}, error);
+            error.message =
+              message == "email: value already exists."
+                ? "Пользователь с таким email адресом уже зарегистрирован."
+                : "Произошла ошибка при входе. Проверте форму и попробуйте еще раз.";
+            this.error = error;
+            console.log(error.message);
+          });
+      }
     },
     ...mapActions("users", {
       createUser: "create"
