@@ -2,7 +2,8 @@
   <v-app>
     <!--    Info_section-->
     <section>
-      <v-parallax height="400">
+      <v-parallax height="500">
+        <img src="http://svsn.kz/static/images/slaid1.png" />
         <v-layout column align-center justify-center class="white--text">
           <h1
             class="black--text mb-1 display-1 text-xs-center"
