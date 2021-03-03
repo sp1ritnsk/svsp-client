@@ -5,20 +5,20 @@
       <v-parallax height="400">
         <v-layout column align-center justify-center class="white--text">
           <h1
-            class="black--text mb-2 display-1 text-xs-center"
+            class="black--text mb-1 display-1 text-xs-center"
             style="font-weight: 900;"
           >
             Система высокоточного спутникого позиционирования
           </h1>
           <div
-            class="black--text subheading mb-3 text-xs-center"
+            class="black--text subheading mb-1 text-xs-center"
             style="font-weight: 900;"
           >
             СВСП являеться крупнейшей сетью референцных станций на террирории
             Республики Казахстан.
           </div>
           <div
-            class="black--text subheading mb-3 text-xs-center"
+            class="black--text subheading mb-1 text-xs-center"
             style="font-weight: 900;"
           >
             Мы предоставляем услуги корректирующей информации во всех областных
@@ -163,7 +163,7 @@
     <!--    End_of_services_section-->
     <!--    clients_section-->
     <section>
-      <v-container grid-list-xl>
+      <v-container grid-list-xl class="grey lighten-3">
         <h1 class="black--text mb-1 display-1 text-center">Наши клиенты</h1>
         <v-layout row wrap justify-center class="my-8">
           <v-flex offset-sm1>
