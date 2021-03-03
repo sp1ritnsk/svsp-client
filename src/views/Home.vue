@@ -215,7 +215,12 @@
         <v-layout row wrap justify-center class="my-5">
           <v-flex xs12 sm2>
             <h1 class="black--text mb-1 display-1 text-center">UPTIME</h1>
-            <h1 style="font-size: 4em;" class="text-center mb-1">99.9%</h1>
+            <h1
+              style="font-size: 4em; padding-top: 40px"
+              class="text-center mb-1"
+            >
+              99.9%
+            </h1>
           </v-flex>
           <v-flex xs12 sm2 offset-sm2>
             <h1 class="black--text mb-1 display-1 text-center">
