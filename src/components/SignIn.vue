@@ -25,7 +25,7 @@
                 outlined
                 type="password"
               ></v-text-field>
-              <v-btn color="blue" dark type="submit">Отправить</v-btn>
+              <v-btn color="blue" dark type="submit" block>Отправить</v-btn>
             </v-card-text>
             <v-card-text class="pt-0">
               <v-divider></v-divider>
