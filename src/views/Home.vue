@@ -2,31 +2,31 @@
   <v-app>
     <!--    Info_section-->
     <section>
-      <v-parallax height="500">
-        <img src="http://svsn.kz/static/images/slaid1.png" />
+      <v-parallax src="http://svsn.kz/static/images/slaid1.png" height="500">
+        <!--        <img src="http://svsn.kz/static/images/slaid1.png" />-->
         <v-layout column align-center justify-center class="white--text">
           <h1
-            class="black--text mb-1 display-1 text-xs-center"
+            class="white--text mb-1 display-1 text-xs-center"
             style="font-weight: 900;"
           >
             Система высокоточного спутникого позиционирования
           </h1>
           <div
-            class="black--text subheading mb-1 text-xs-center"
+            class="white--text subheading mb-1 text-xs-center"
             style="font-weight: 900;"
           >
             СВСП являеться крупнейшей сетью референцных станций на террирории
             Республики Казахстан.
           </div>
           <div
-            class="black--text subheading mb-1 text-xs-center"
+            class="white--text subheading mb-1 text-xs-center"
             style="font-weight: 900;"
           >
             Мы предоставляем услуги корректирующей информации во всех областных
             центрах и городах республиканского значения,
           </div>
           <div
-            class="black--text subheading mb-3 text-xs-center"
+            class="white--text subheading mb-3 text-xs-center"
             style="font-weight: 900;"
           >
             а также в наиболее крупных населеных пунктах Республики Казахстан.
