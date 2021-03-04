@@ -4,7 +4,7 @@
       permanent
       app
       clipped
-      v-if="['AccountView'].includes($route.name)"
+      v-if="['AccountView', 'ProfileView'].includes($route.name)"
     >
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-list-item two-line v-if="user">
@@ -41,7 +41,7 @@
       </v-sheet>
       <v-divider></v-divider>
       <v-list dense nav>
-        <v-list-item link>
+        <v-list-item link to="/account" exact>
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
@@ -51,7 +51,7 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/account/profile" exact>
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>

@@ -4,7 +4,7 @@
       <v-card class="px-0 mx-0">
         <v-card-title>
           <div class="text-h5 ">
-            Список ваших подписок
+            Ваши подписки
           </div>
         </v-card-title>
         <v-divider></v-divider>
@@ -315,7 +315,6 @@ export default {
     }
   },
   created: function() {
-    console.log(this.user);
     this.findOrders({
       query: {
         $populate: ["user"],

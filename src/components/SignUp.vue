@@ -223,7 +223,6 @@ export default {
   },
 
   data: () => ({
-    snackbar: false,
     email: undefined,
     password: undefined,
     error: undefined,
@@ -236,6 +235,7 @@ export default {
     iin: undefined,
     bin: undefined,
     checkbox: false,
+    snackbar: false,
     isValid: false
   }),
   computed: {
@@ -319,7 +319,6 @@ export default {
       this.dismissError();
       this.$v.$touch();
       if (this.$v.$invalid) {
-        console.log(this.snackbar);
         this.snackbar = true;
       } else {
         this.isValid = true;
