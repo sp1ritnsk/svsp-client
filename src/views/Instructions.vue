@@ -76,5 +76,7 @@
 <style lang="scss">
 img {
   padding-left: 70px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 </style>
