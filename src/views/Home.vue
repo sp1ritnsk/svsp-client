@@ -1,254 +1,136 @@
 <template>
-  <v-app>
-    <!--    Info_section-->
-    <section>
-      <v-parallax height="500">
-        <img src="http://svsn.kz/static/images/slaid1.png" />
-        <v-layout column align-center justify-center class="white--text">
-          <h1
-            class="black--text mb-1 display-1 text-xs-center"
-            style="font-weight: 900;"
-          >
+  <v-container fluid class="pa-0">
+    <v-parallax
+      dark
+      src="../assets/images/background-parallax.jpg"
+      height="680"
+    >
+      <v-row align="center" justify="center">
+        <v-col class="text-center" cols="12">
+          <h1 class=" font-weight-thin mb-4 text-uppercase">
             Система высокоточного спутникого позиционирования
           </h1>
-          <div
-            class="black--text subheading mb-1 text-xs-center"
-            style="font-weight: 900;"
-          >
-            СВСП являеться крупнейшей сетью референцных станций на террирории
-            Республики Казахстан.
-          </div>
-          <div
-            class="black--text subheading mb-1 text-xs-center"
-            style="font-weight: 900;"
-          >
-            Мы предоставляем услуги корректирующей информации во всех областных
-            центрах и городах республиканского значения,
-          </div>
-          <div
-            class="black--text subheading mb-3 text-xs-center"
-            style="font-weight: 900;"
-          >
-            а также в наиболее крупных населеных пунктах Республики Казахстан.
-          </div>
-          <v-btn dark to="/map" color="indigo">Карта</v-btn>
-        </v-layout>
-      </v-parallax>
-    </section>
-    <!--    End_of_info_section-->
-    <!--    Services_section-->
-    <section>
-      <v-container grid-list-xl>
-        <h1 class="black--text mb-1 display-1 text-center">Услуги</h1>
-        <v-layout row wrap justify-center class="my-5">
-          <!--      first_card-->
-          <v-flex xs12 sm2>
-            <v-card max-width="300">
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                height="200px"
-              ></v-img>
-              <v-card-title primary-title class="layout justify-center">
-                RTK
-              </v-card-title>
-              <v-card-subtitle class="layout justify-center">
-                Real time kinematic
-              </v-card-subtitle>
-              <v-card-actions>
-                <v-btn left color="indigo" text class="layout justify-center">
-                  Подробнее
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="show = !show">
-                  <v-icon>{{
-                    show ? "mdi-chevron-up" : "mdi-chevron-down"
-                  }}</v-icon>
-                </v-btn>
-              </v-card-actions>
-              <v-expand-transition>
-                <div v-show="show">
-                  <v-divider></v-divider>
-                  <v-card-text>
-                    I'm a thing. But, like most politicians, he promised more
-                    than he could deliver. You won't have time for sleeping,
-                    soldier, not with all the bed making you'll be doing. Then
-                    we'll go with that data file! Hey, you add a one and two
-                    zeros to that or we walk! You're going to do his laundry?
-                    I've got to find a way to escape.
-                  </v-card-text>
-                </div>
-              </v-expand-transition>
-            </v-card>
-          </v-flex>
-          <!--      second_card-->
-          <v-flex xs12 sm2 offset-sm2>
-            <v-card max-width="300">
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                height="200px"
-              ></v-img>
-              <v-card-title primary-title class="layout justify-center">
-                RINEX
-              </v-card-title>
-              <v-card-subtitle class="layout justify-center">
-                Receiver Independent Exchange Format
-              </v-card-subtitle>
-              <v-card-actions>
-                <v-btn left color="indigo" text class="layout justify-center">
-                  Подробнее
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="show = !show">
-                  <v-icon>{{
-                    show ? "mdi-chevron-up" : "mdi-chevron-down"
-                  }}</v-icon>
-                </v-btn>
-              </v-card-actions>
-              <v-expand-transition>
-                <div v-show="show">
-                  <v-divider></v-divider>
-                  <v-card-text>
-                    I'm a thing. But, like most politicians, he promised more
-                    than he could deliver. You won't have time for sleeping,
-                    soldier, not with all the bed making you'll be doing. Then
-                    we'll go with that data file! Hey, you add a one and two
-                    zeros to that or we walk! You're going to do his laundry?
-                    I've got to find a way to escape.
-                  </v-card-text>
-                </div>
-              </v-expand-transition>
-            </v-card>
-          </v-flex>
-          <!--      third_card-->
-          <v-flex xs12 sm2 offset-sm2>
-            <v-card max-width="300">
-              <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                height="200px"
-              ></v-img>
-              <v-card-title primary-title class="layout justify-center">
-                Поверка
-              </v-card-title>
-              <v-card-subtitle class="layout justify-center">
-                Поверка средств измерений
-              </v-card-subtitle>
-              <v-card-actions>
-                <v-btn left color="indigo" text class="layout justify-center">
-                  Подробнее
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="show = !show">
-                  <v-icon>{{
-                    show ? "mdi-chevron-up" : "mdi-chevron-down"
-                  }}</v-icon>
-                </v-btn>
-              </v-card-actions>
-              <v-expand-transition>
-                <div v-show="show">
-                  <v-divider></v-divider>
-                  <v-card-text>
-                    I'm a thing. But, like most politicians, he promised more
-                    than he could deliver. You won't have time for sleeping,
-                    soldier, not with all the bed making you'll be doing. Then
-                    we'll go with that data file! Hey, you add a one and two
-                    zeros to that or we walk! You're going to do his laundry?
-                    I've got to find a way to escape.
-                  </v-card-text>
-                </div>
-              </v-expand-transition>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </section>
-    <!--    End_of_services_section-->
-    <!--    clients_section-->
-    <section>
-      <v-container grid-list-xl class="grey lighten-3">
-        <h1 class="black--text mb-1 display-1 text-center">Наши клиенты</h1>
-        <v-layout row wrap justify-center class="my-8">
-          <v-flex offset-sm1>
-            <v-card class="" max-width="200">
-              <v-img
-                src="https://polycomm.kz/img/logo.png"
-                height="200px"
-                style="max-width: 100%;"
-              ></v-img>
-            </v-card>
-          </v-flex>
-          <v-flex>
-            <v-card class="rounded-circle" max-width="200">
-              <v-img
-                src="https://gov4c.kz/public/img/logo.png"
-                height="200px"
-              ></v-img>
-            </v-card>
-          </v-flex>
-          <v-flex>
-            <v-card class="rounded-circle" max-width="200" height="200">
-              <h1 style="padding-top: 80px" class="mb-1 display-1 text-center">
-                AS PROJECT
-              </h1>
-            </v-card>
-          </v-flex>
-          <v-flex>
-            <v-card class="rounded-circle" max-width="200" height="200">
-              <h1 style="padding-top: 55px" class="mb-1 display-1 text-center">
-                ТОО "Петрозем"
-              </h1>
-            </v-card>
-          </v-flex>
-          <v-flex>
-            <v-card class="rounded-circle" max-width="200" height="200">
-              <h1 style="padding-top: 80px" class="mb-1 display-1 text-center">
-                TOO Nur-Esil
-              </h1>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </section>
-    <!--    end_of_clients-->
-    <!--    Indicators_section-->
-    <section>
-      <v-container grid-list-xl>
-        <h1 class="black--text mb-1 display-1 text-center">Наши показатели</h1>
-        <v-layout row wrap justify-center class="my-5">
-          <v-flex xs12 sm2>
-            <h1 class="black--text mb-1 display-1 text-center">UPTIME</h1>
-            <h1
-              style="font-size: 4em; padding-top: 40px"
-              class="text-center mb-1"
+          <h3 class="subtitle-1 __heading mx-auto">
+            СВСП является крупнейшей сетью референцных станций на территории
+            Республики Казахстан. Мы предоставляем услуги корректирующей
+            информации во всех городах республиканского значения, областных
+            центрах и крупных населенных пунктах.
+          </h3>
+        </v-col>
+      </v-row>
+    </v-parallax>
+    <v-container fluid>
+      <v-container>
+        <v-row align="center" justify="center">
+          <v-col class="text-center">
+            <h2 class="text-h4 font-weight-medium my-2">Услуги</h2>
+          </v-col>
+        </v-row>
+        <v-row justify="center" align="stretch" class="pb-6">
+          <v-col v-for="(item, i) in services" :key="i" cols="12" md="4">
+            <v-card
+              class="mx-auto fill-height align-center d-flex flex-column"
+              max-width="344"
+              elevation="6"
             >
-              99.9%
-            </h1>
-          </v-flex>
-          <v-flex xs12 sm2 offset-sm2>
-            <h1 class="black--text mb-1 display-1 text-center">
-              Колличество станций
-            </h1>
-            <h1 style="font-size: 4em;" class="text-center mb-1">60</h1>
-          </v-flex>
-          <v-flex xs12 sm2 offset-sm2>
-            <h1 class="black--text mb-1 display-1 text-center">
-              Колличество клиентов
-            </h1>
-            <h1 style="font-size: 4em;" class="text-center mb-1">30</h1>
-          </v-flex>
-        </v-layout>
+              <v-img :src="item.img" height="200px" max-height="200px"></v-img>
+
+              <v-card-title>
+                {{ item.title }}
+              </v-card-title>
+
+              <v-card-text class="align-center">
+                {{ item.subtitle }}
+              </v-card-text>
+
+              <v-card-actions class="mt-auto">
+                <v-btn color="orange lighten-2" text to="/map">
+                  Заказать
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
-    </section>
-  </v-app>
+    </v-container>
+    <v-container fluid class="blue-grey lighten-5">
+      <v-container>
+        <v-row align="center" justify="center">
+          <v-col class="text-center">
+            <h2 class="text-h4 font-weight-medium my-2">Наши клиенты</h2>
+          </v-col>
+        </v-row>
+        <v-row class="pb-6">
+          <v-col v-for="(item, i) in clients" :key="i">
+            <v-img
+              :src="item.url"
+              height="128px"
+              max-height="128px"
+              contain
+              :title="item.title"
+              :alt="item.title"
+            ></v-img>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-container>
+    <v-container fluid>
+      <v-container>
+        <v-row align="center" justify="center">
+          <v-col class="text-center">
+            <h2 class="text-h4 font-weight-medium my-2">Контакты</h2>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
 export default {
   data: () => ({
-    show: false
+    show: false,
+    services: [
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "RTK поправки",
+        subtitle:
+          "Услуги по предоставлению поправок ГНСС измерений в режиме реального времени для повышения точности",
+        show: false
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "RINEX данные",
+        subtitle:
+          "Предоставление RINEX данных для проведения постобработки геодезических измерений.",
+        show: false
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Поверка ГНСС оборудования",
+        subtitle:
+          "Услуги по проведению поверки любого ГНСС оборудования с выдачей сертификатов.",
+        show: false
+      }
+    ],
+    clients: [
+      {
+        url: require("../assets/images/nao.png"),
+        title: 'НАО ГК "Правительство для граждан"'
+      },
+      {
+        url: require("../assets/images/polycom.png"),
+        title: 'ТОО "PolyComm"'
+      }
+    ]
   }),
   name: "Home",
   components: {}
 };
 </script>
 
-<style></style>
+<style>
+.__heading {
+  max-width: 600px;
+}
+</style>

@@ -102,6 +102,6 @@ export default {
 
 <style lang="scss">
 html {
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 </style>
