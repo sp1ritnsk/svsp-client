@@ -73,4 +73,8 @@
   </v-app>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+img {
+  padding-left: 70px;
+}
+</style>
