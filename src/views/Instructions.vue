@@ -6,33 +6,49 @@
       </h1>
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm2>
-          <v-card max-width="300">
+          <v-card
+            link
+            href="src/assets/instructions/setup_leica.pdf"
+            max-width="400"
+          >
             <img src="http://svsn.kz/static/images/Leica_gs08.jpg" />
-            <a href="src/assets/instructions/setup_leica.pdf"
+            <a class="text-center display-1"
               >Инструкция по настройке оборудования Leica CS10 и CS15 | PDF</a
             >
           </v-card>
         </v-flex>
-        <v-flex xs12 sm2>
-          <v-card max-width="300">
+        <v-flex xs12 sm2 offset-sm1>
+          <v-card
+            link
+            href="src/assets/instructions/setup_trimble.pdf"
+            max-width="400"
+          >
             <img src="http://svsn.kz/static/images/Trimble_TSC3_logo.jpg" />
-            <a href="src/assets/instructions/setup_trimble.pdf"
+            <a class="text-center display-1"
               >Инструкция по настройке оборудования Trimble TSC3 | PDF</a
             >
           </v-card>
         </v-flex>
-        <v-flex xs12 sm2>
-          <v-card max-width="300">
+        <v-flex xs12 sm2 offset-sm1>
+          <v-card
+            link
+            href="src/assets/instructions/setup_stonex.pdf"
+            max-width="400"
+          >
             <img src="http://svsn.kz/static/images/stonex4.jpg" />
-            <a href="src/assets/instructions/setup_stonex.pdf"
+            <a class="text-center display-1"
               >Инструкция по настройке оборудования Stonex | PDF</a
             >
           </v-card>
         </v-flex>
-        <v-flex xs12 sm2>
-          <v-card max-width="300">
+        <v-flex xs12 sm2 offset-sm1>
+          <v-card
+            link
+            href="src/assets/instructions/setup_CHСnav.pdf"
+            max-width="400"
+          >
             <img src="http://svsn.kz/static/images/CHCNav.jpg" />
-            <a href="src/assets/instructions/setup_CHСnav.pdf"
+            <a class="text-center display-1"
               >Инструкция по настройке оборудования CHСnav | PDF</a
             >
           </v-card>
@@ -41,9 +57,13 @@
           Инструкции по установке параметров преобразования между различными СК
         </h1>
         <v-flex xs12 sm2>
-          <v-card max-width="300">
+          <v-card
+            link
+            href="src/assets/instructions/setup_trimble_cs.pdf"
+            max-width="400"
+          >
             <img src="http://svsn.kz/static/images/Leica_gs08.jpg" />
-            <a href="src/assets/instructions/setup_trimble_cs.pdf"
+            <a class="text-center display-1"
               >Инструкция по установке СК на оборудования Trimble TSC3 | PDF</a
             >
           </v-card>
