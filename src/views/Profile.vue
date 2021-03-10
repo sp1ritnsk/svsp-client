@@ -1,7 +1,5 @@
 <template>
-  <v-container fluid>
-    <Profile />
-  </v-container>
+  <Profile />
 </template>
 
 <script>

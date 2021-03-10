@@ -1,113 +1,180 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-card>
-        <v-card-title>
-          <div class="text-h5">
-            Редактирование профиля
-          </div>
-        </v-card-title>
-        <v-card-subtitle>
-          <div>
-            Вы зарегистрированы как
-            <span class="font-weight-medium">Физическое лицо</span>
-          </div>
-        </v-card-subtitle>
-
-        <v-divider></v-divider>
-        <v-card-text>
-          <v-form ref="form" @submit.prevent="submitForm()">
-            <v-container fluid>
-              <v-row justify="space-around">
-                <v-col cols="4" sm="12" md="4">
-                  <div class="text-h6 font-weight-regular pb-2">
-                    Аккаунт
-                  </div>
-                  <v-text-field
-                    ref="email"
-                    v-model="editedItem.email"
-                    label="Email"
-                    required
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <v-navigation-drawer
+          app
+          clipped
+          left
+          disable-resize-watcher
+          v-model="accountDrawer"
+        >
+          <v-sheet color="grey lighten-4" class="pa-4">
+            <v-list-item two-line v-if="user">
+              <v-list-item-content class="pb-0">
+                <v-list-item-title class="title">
+                  {{ user.firstname }} {{ user.lastname }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ user.email }}
+                </v-list-item-subtitle>
+                <div class="text-left">
+                  <v-btn
+                    text
+                    class="ml-0"
+                    x-small
+                    color="primary"
+                    @click.prevent="logOut()"
+                    rounded
                     outlined
-                    dense
-                    :error-messages="emailErrors"
-                    @change="$v.editedItem.email.$touch()"
-                    @blur="$v.editedItem.email.$touch()"
+                    >Выход</v-btn
                   >
-                  </v-text-field>
-                  <v-text-field
-                    ref="password"
-                    v-model="editedItem.password"
-                    label="Пароль"
-                    outlined
-                    type="password"
-                    dense
-                    persistent-hint
-                    hint="Введите новый пароль"
-                    :error-messages="passwordErrors"
-                  ></v-text-field>
-                  <div class="text-h6 font-weight-regular pb-2">
-                    Информация
-                  </div>
-                  <v-text-field
-                    ref="lastname"
-                    v-model="editedItem.lastname"
-                    label="Фамилия"
-                    outlined
-                    required
-                    dense
-                    :error-messages="lastnameErrors"
-                    @change="$v.editedItem.lastname.$touch()"
-                    @blur="$v.editedItem.lastname.$touch()"
-                  ></v-text-field>
-                  <v-text-field
-                    ref="firstname"
-                    v-model="editedItem.firstname"
-                    label="Имя"
-                    outlined
-                    required
-                    dense
-                    :error-messages="firstnameErrors"
-                    @change="$v.editedItem.firstname.$touch()"
-                    @blur="$v.editedItem.firstname.$touch()"
-                  ></v-text-field>
-                  <v-text-field
-                    ref="patronym"
-                    v-model="editedItem.patronym"
-                    label="Отчество"
-                    outlined
-                    required
-                    dense
-                    :error-messages="patronymErrors"
-                    @change="$v.editedItem.patronym.$touch()"
-                    @blur="$v.editedItem.patronym.$touch()"
-                  ></v-text-field>
-                  <v-text-field
-                    ref="phone"
-                    v-model="editedItem.phone"
-                    label="Телефон"
-                    outlined
-                    required
-                    dense
-                    :error-messages="phoneErrors"
-                    @change="$v.editedItem.phone.$touch()"
-                    @blur="$v.editedItem.phone.$touch()"
-                  ></v-text-field>
+                  <v-chip
+                    class="ma-2"
+                    color="error"
+                    dark
+                    x-small
+                    v-if="user.role === 'admin'"
+                  >
+                    Администратор
+                  </v-chip>
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+          </v-sheet>
+          <v-divider></v-divider>
+          <v-list dense nav>
+            <v-list-item link to="/account" exact>
+              <v-list-item-icon>
+                <v-icon>mdi-view-dashboard</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  Подписки
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item link to="/account/profile" exact>
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  Профиль
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
 
-                  <v-text-field
-                    ref="bin"
-                    v-model="editedItem.bin"
-                    label="БИН"
-                    outlined
-                    required
-                    dense
-                    v-if="editedItem.type === 'Юридическое лицо'"
-                    :error-messages="binErrors"
-                    @change="$v.editedItem.bin.$touch()"
-                    @blur="$v.editedItem.bin.$touch()"
-                  ></v-text-field>
-                </v-col>
-                <!-- <v-col cols="4" sm="12" md="4">
+        <v-card>
+          <v-card-title>
+            <div class="text-h5">
+              Редактирование профиля
+            </div>
+          </v-card-title>
+          <v-card-subtitle>
+            <div>
+              Вы зарегистрированы как
+              <span class="font-weight-medium">Физическое лицо</span>
+            </div>
+          </v-card-subtitle>
+
+          <v-divider></v-divider>
+
+          <v-card-text>
+            <v-form ref="form" @submit.prevent="submitForm()" v-if="user">
+              <v-container fluid>
+                <v-row justify="space-around">
+                  <v-col cols="12" sm="12" md="4">
+                    <div class="text-h6 font-weight-regular pb-2">
+                      Аккаунт
+                    </div>
+                    <v-text-field
+                      ref="email"
+                      v-model="editedItem.email"
+                      label="Email"
+                      required
+                      outlined
+                      dense
+                      :error-messages="emailErrors"
+                      @change="$v.editedItem.email.$touch()"
+                      @blur="$v.editedItem.email.$touch()"
+                    >
+                    </v-text-field>
+                    <v-text-field
+                      ref="password"
+                      v-model="editedItem.password"
+                      label="Пароль"
+                      outlined
+                      type="password"
+                      dense
+                      persistent-hint
+                      hint="Введите новый пароль"
+                      :error-messages="passwordErrors"
+                    ></v-text-field>
+                    <div class="text-h6 font-weight-regular pb-2">
+                      Информация
+                    </div>
+                    <v-text-field
+                      ref="lastname"
+                      v-model="editedItem.lastname"
+                      label="Фамилия"
+                      outlined
+                      required
+                      dense
+                      :error-messages="lastnameErrors"
+                      @change="$v.editedItem.lastname.$touch()"
+                      @blur="$v.editedItem.lastname.$touch()"
+                    ></v-text-field>
+                    <v-text-field
+                      ref="firstname"
+                      v-model="editedItem.firstname"
+                      label="Имя"
+                      outlined
+                      required
+                      dense
+                      :error-messages="firstnameErrors"
+                      @change="$v.editedItem.firstname.$touch()"
+                      @blur="$v.editedItem.firstname.$touch()"
+                    ></v-text-field>
+                    <v-text-field
+                      ref="patronym"
+                      v-model="editedItem.patronym"
+                      label="Отчество"
+                      outlined
+                      required
+                      dense
+                      :error-messages="patronymErrors"
+                      @change="$v.editedItem.patronym.$touch()"
+                      @blur="$v.editedItem.patronym.$touch()"
+                    ></v-text-field>
+                    <v-text-field
+                      ref="phone"
+                      v-model="editedItem.phone"
+                      label="Телефон"
+                      outlined
+                      required
+                      dense
+                      :error-messages="phoneErrors"
+                      @change="$v.editedItem.phone.$touch()"
+                      @blur="$v.editedItem.phone.$touch()"
+                    ></v-text-field>
+
+                    <v-text-field
+                      ref="bin"
+                      v-model="editedItem.bin"
+                      label="БИН"
+                      outlined
+                      required
+                      dense
+                      v-if="editedItem.type === 'Юридическое лицо'"
+                      :error-messages="binErrors"
+                      @change="$v.editedItem.bin.$touch()"
+                      @blur="$v.editedItem.bin.$touch()"
+                    ></v-text-field>
+                  </v-col>
+                  <!-- <v-col cols="4" sm="12" md="4">
 									<div class="text-h6 font-weight-regular pb-2">
 										Организация
 									</div>
@@ -168,35 +235,31 @@
 										dense
 									></v-text-field>
 								</v-col> -->
-              </v-row>
-              <v-row justify="center">
-                <v-col cols="4">
-                  <v-btn class="mx-4" color="success" type="submit"
-                    >Сохранить</v-btn
-                  >
-                  <v-btn>Отмена</v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
-            <v-snackbar v-model="snackbar" :timeout="2000" color="success">
-              <span>{{ message }}</span>
+                </v-row>
+                <v-row justify="center">
+                  <v-col cols="12" md="4" class="text-center">
+                    <v-btn class="mx-2" color="success" type="submit"
+                      >Сохранить</v-btn
+                    >
+                    <v-btn>Отмена</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-snackbar v-model="snackbar" :timeout="2000" color="success">
+                <span>{{ message }}</span>
 
-              <template v-slot:action="{ attrs }">
-                <v-btn
-                  color="blue"
-                  text
-                  v-bind="attrs"
-                  @click="snackbar = false"
-                >
-                  <v-icon>mdi-close</v-icon>
-                </v-btn>
-              </template>
-            </v-snackbar>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+                <template v-slot:action="{ attrs }">
+                  <v-btn text v-bind="attrs" @click="snackbar = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </template>
+              </v-snackbar>
+            </v-form>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -250,7 +313,6 @@ export default {
 
   name: "Profile",
   data: () => ({
-    // data
     editedItem: {
       email: "",
       password: "",
@@ -270,12 +332,17 @@ export default {
   }),
   computed: {
     ...mapState("auth", ["user"]),
-    ...mapActions("users", {
-      getUser: "get"
-    }),
-    ...mapActions("users", {
-      patchUser: "patch"
-    }),
+    ...mapState(["accountDrawer"]),
+
+    accountDrawer: {
+      get() {
+        return this.$store.state.accountDrawer;
+      },
+      set(ev) {
+        this.$store.commit("setDrawer", ev);
+      }
+    },
+
     firstnameErrors() {
       const errors = [];
       if (!this.$v.editedItem.firstname.$dirty) return errors;
@@ -332,6 +399,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions("users", {
+      getUser: "get"
+    }),
+    ...mapActions("users", {
+      patchUser: "patch"
+    }),
     submitForm() {
       this.message = "";
 
@@ -347,7 +420,7 @@ export default {
       this.user
         .save()
         .then(response => {
-          this.message = "Инфорамция успешно сохранена";
+          this.message = "Информация успешно сохранена";
           this.snackbar = true;
         })
         .catch(err => {
@@ -356,12 +429,12 @@ export default {
           this.snackbar = true;
           console.log(err);
         });
-    }
+    },
+    ...mapActions(["toggleDrawer"])
   },
   components: {},
   created: function() {
     this.editedItem = Object.assign({}, this.user);
-    console.log(this.editedItem, "assigned user");
   }
 };
 </script>

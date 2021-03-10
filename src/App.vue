@@ -1,69 +1,84 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      permanent
+      class="hidden"
       app
-      clipped
-      v-if="['AccountView', 'ProfileView'].includes($route.name)"
+      bottom
+      v-model="drawer"
+      disable-resize-watcher
     >
-      <v-sheet color="grey lighten-4" class="pa-4">
-        <v-list-item two-line v-if="user">
-          <v-list-item-content class="pb-0">
-            <v-list-item-title class="title">
-              {{ user.firstname }} {{ user.lastname }}
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ user.email }}
-            </v-list-item-subtitle>
-            <div class="text-left">
-              <v-btn
-                text
-                class="ml-0"
-                x-small
-                color="primary"
-                @click.prevent="logOut()"
-                rounded
-                outlined
-                >Выход</v-btn
-              >
-              <v-chip
-                class="ma-2"
-                color="red"
-                dark
-                x-small
-                v-if="user.role === 'admin'"
-              >
-                Администратор
-              </v-chip>
-            </div>
-          </v-list-item-content>
-        </v-list-item>
-      </v-sheet>
-      <v-divider></v-divider>
-      <v-list dense nav>
-        <v-list-item link to="/account" exact>
-          <v-list-item-icon>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              Подписки
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/account/profile" exact>
-          <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              Профиль
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+      <v-list nav dense>
+        <v-list-item-group>
+          <v-list-item v-for="(item, i) in topMenu" :key="i">
+            <v-btn text block :to="item.url">
+              {{ item.title }}
+            </v-btn>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app clipped-left class="navbar">
+
+    <v-navigation-drawer
+      app
+      clipped
+      right
+      hide-overlay
+      stateless
+      :value="isFeaturesSelected"
+      @transitionend="cancelOrder"
+      class="hidden"
+      width="320px"
+    >
+      <div v-if="!isOrderCreating">
+        <StationsInfo />
+      </div>
+      <v-container v-if="!isOrderCreating">
+        <v-row>
+          <v-col>
+            <v-card flat v-if="!user && !isOrderCreating">
+              <v-card-text class="py-0">
+                <div class="py-0">
+                  Для подачи заявки необходимо войти в аккаунт или
+                  зарегистрироваться
+                </div>
+              </v-card-text>
+              <v-card-actions>
+                <v-row align="center" justify="space-around" class="pb-4 pt-2">
+                  <v-btn color="primary" to="/signin">Войти</v-btn>
+                </v-row>
+              </v-card-actions>
+            </v-card>
+            <v-card flat v-if="user && !isOrderCreating">
+              <v-card-text class="py-0">
+                <div class="py-0">
+                  Подайте заявку для подключения к выбранным станциям
+                </div>
+              </v-card-text>
+              <v-card-actions>
+                <v-row align="center" justify="space-around" class="pb-4 pt-2">
+                  <v-btn
+                    @click="isOrderCreating = !isOrderCreating"
+                    color="primary"
+                    >Подать заявку</v-btn
+                  >
+                </v-row>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <Order
+        v-if="isOrderCreating"
+        @cancelOrder="isOrderCreating = !isOrderCreating"
+      />
+    </v-navigation-drawer>
+
+    <v-app-bar app clipped-left clipped-right class="navbar">
+      <v-app-bar-nav-icon
+        v-if="['AccountView', 'ProfileView'].includes($route.name)"
+        class="hidden-md-and-up"
+        @click.stop="toggleDrawer"
+      ></v-app-bar-nav-icon>
       <v-img
         contain
         max-height="40"
@@ -72,72 +87,108 @@
       ></v-img>
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
-          Система высокоточного спутникого позиционирования
+          СВСП
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn plain to="/">
-          Главная
-        </v-btn>
-        <v-btn plain to="/map">
-          Карта сети
-        </v-btn>
-        <v-menu open-on-hover offset-y rounded="0" class="elevation-0">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn plain v-bind="attrs" v-on="on">
-              Информация
-            </v-btn>
-          </template>
 
-          <v-list>
-            <v-list-item to="/about">
-              <v-list-item-title>О нас</v-list-item-title>
-            </v-list-item>
-            <v-list-item to="/instructions">
-              <v-list-item-title>Инструкции</v-list-item-title>
-            </v-list-item>
-            <v-list-item to="/faq">
-              <v-list-item-title>Вопрос/ответ</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-btn plain to="/plans">
-          Цены
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn v-for="(item, i) in topMenu" :key="i" plain :to="item.url">
+          {{ item.title }}
         </v-btn>
       </v-toolbar-items>
+
       <v-btn color="primary" to="/account" v-if="user">
         Аккаунт
       </v-btn>
-      <v-btn v-if="!user" dark to="/signin" color="indigo">
+      <v-btn v-if="!user" dark to="/signin" color="primary">
         Вход
       </v-btn>
+      <v-app-bar-nav-icon
+        class="hidden-md-and-up"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
     </v-app-bar>
+
     <v-main>
       <router-view></router-view>
     </v-main>
+    <Footer
+      v-if="!['MapView', 'AccountView', 'ProfileView'].includes($route.name)"
+    />
   </v-app>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import Footer from "./components/Footer";
+import Order from "./components/Order.vue";
+import StationsInfo from "./components/StationsInfo";
 
 export default {
   name: "App",
 
-  components: {},
+  components: {
+    Footer,
+    Order,
+    StationsInfo
+  },
 
   data: () => ({
-    //
+    drawer: false,
+    accountDrawer: true,
+    isOrderCreating: false,
+    topMenu: [
+      {
+        url: "/",
+        title: "Главная"
+      },
+      {
+        url: "/about",
+        title: "О нас"
+      },
+      {
+        url: "/map",
+        title: "Карта сети"
+      },
+      {
+        url: "/instructions",
+        title: "Инструкции"
+      },
+      {
+        url: "/plans",
+        title: "Цены"
+      }
+    ]
   }),
   computed: {
     // The user is automatically set by the feathers-vuex auth module upon login.
-    ...mapState("auth", ["user"])
+    ...mapState("auth", ["user"]),
+    ...mapState("auth", ["user"]),
+    ...mapGetters(["isFeaturesSelected"]),
+    ...mapGetters("orders", { findOrdersInStore: "find" }),
+    selectedFeatures: {
+      get() {
+        return this.$store.state.selectedFeatures;
+      },
+      set() {
+        this.$store.commit("setSelectedFeatures", []);
+      }
+    },
+    orders() {
+      return this.findOrdersInStore({
+        query: {
+          $sort: { createdAt: -1 }
+        }
+      });
+    }
   },
   methods: {
-    clearForm(e) {
-      console.log("Form closed");
-    },
+    ...mapActions("auth", ["authenticate", "logout"]),
+    ...mapActions(["toggleDrawer"]),
+    // clearForm(e) {
+    // 	console.log('Form closed')
+    // },
     logOut() {
       this.logout()
         .then(() => {
@@ -150,9 +201,11 @@ export default {
           console.log(error);
         });
     },
-    ...mapActions("auth", ["authenticate", "logout"])
+    cancelOrder() {
+      this.isOrderCreating = !this.isOrderCreating;
+    }
   },
-  mounted() {
+  mounted: function() {
     this.$store.dispatch("auth/authenticate").catch(error => {
       if (!error.message.includes("Could not find stored JWT")) {
         console.log("Could not find stored JWT");
@@ -169,6 +222,6 @@ body {
 }
 
 .navbar {
-  z-index: 50;
+  z-index: 5;
 }
 </style>

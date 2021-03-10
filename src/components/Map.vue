@@ -5,6 +5,8 @@
     :load-tiles-while-interacting="true"
     class="map"
     ref="map"
+    @pointermove="onMapPointerMove"
+    :style="{ cursor: mapCursor }"
   >
     <vl-view
       :zoom.sync="zoom"
@@ -44,7 +46,7 @@
     <vl-interaction-select
       ident="selection"
       :features.sync="selectedFeatures"
-      :filter.sync="selectionFilter"
+      :layers="['stations']"
     >
       <vl-style-box>
         <vl-style-circle :radius="6">
@@ -70,7 +72,8 @@ export default {
   data: () => ({
     zoom: 5,
     center: [7551864, 6063168],
-    rotation: 0
+    rotation: 0,
+    mapCursor: "default"
     // stations: [],
     // coverageArea: []
     // selectedFeatures: [],
@@ -97,11 +100,22 @@ export default {
       const buffered = buffer(data, 50, { units: "kilometers", steps: 72 });
       this.$store.commit("setCoverageArea", buffered.features);
     },
-    selectionFilter(feature, layer) {
-      if (layer) {
-        return layer.get("id") === "buffer" ? false : true;
+    // selectionFilter(feature, layer) {
+    //   if (layer) {
+    //     return layer.get("id") === "buffer" ? false : true;
+    //   }
+    //   return true;
+    // },
+    onMapPointerMove({ pixel }) {
+      let hit = this.$refs.map.forEachFeatureAtPixel(pixel, () => true, {
+        layerFilter: layer => layer.get("id") === "stations"
+      });
+
+      if (hit) {
+        this.mapCursor = "pointer";
+      } else {
+        this.mapCursor = "default";
       }
-      return true;
     }
   }
 };
@@ -109,7 +123,7 @@ export default {
 
 <style lang="scss">
 .vl-map {
-  height: 100%;
+  // height: 100%;
   position: fixed;
   .ol-control {
     padding: 0;
