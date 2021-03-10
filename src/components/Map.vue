@@ -64,7 +64,7 @@
 
 <script>
 import buffer from "@turf/buffer";
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "Map",

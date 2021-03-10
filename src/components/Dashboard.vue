@@ -331,7 +331,7 @@ export default {
     statusAlias(item) {
       let status;
       if (item.status) {
-        status = this.statuses.find((el, i, a) => {
+        status = this.statuses.find(el => {
           return el.status === item.status;
         });
         return status.alias;

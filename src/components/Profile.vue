@@ -263,14 +263,13 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import {
   required,
   minLength,
   maxLength,
   email,
-  helpers,
   integer
 } from "vuelidate/lib/validators";
 
@@ -419,7 +418,7 @@ export default {
       user.commit();
       this.user
         .save()
-        .then(response => {
+        .then(() => {
           this.message = "Информация успешно сохранена";
           this.snackbar = true;
         })

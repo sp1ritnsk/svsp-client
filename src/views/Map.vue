@@ -11,7 +11,7 @@
 <script>
 import Map from "../components/Map.vue";
 
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "MapView",

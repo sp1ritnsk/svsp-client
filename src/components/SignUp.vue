@@ -184,14 +184,13 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import {
   required,
   minLength,
   maxLength,
   email,
-  helpers,
   integer
 } from "vuelidate/lib/validators";
 
@@ -322,8 +321,7 @@ export default {
       phone,
       type,
       iin,
-      bin,
-      checkbox
+      bin
     ) {
       this.dismissError();
       this.$v.$touch();
@@ -343,7 +341,7 @@ export default {
           iin,
           bin
         })
-          .then(response => {
+          .then(() => {
             this.authenticate({ strategy: "local", email, password }).then(() =>
               this.$router.push("/account")
             );

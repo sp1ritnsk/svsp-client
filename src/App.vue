@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import Footer from "./components/Footer";
 import Order from "./components/Order.vue";
 import StationsInfo from "./components/StationsInfo";

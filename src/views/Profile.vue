@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Profile from "../components/Profile";
 
 export default {
