@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="text-h5 pb-3">Выбранные станции</div>
+    <div class="text-h6 pb-2">Выбранные станции</div>
     <v-row v-for="(station, i) in selectedFeatures" :key="i" class="pb-0">
       <v-col class="pb-0">
         <v-card outlined>
@@ -20,7 +20,7 @@
             <span class="font-weight-bold">Точка подключения:</span>
             {{ station.properties.Mount_poin }} <br />
             <span class="font-weight-bold">Координаты:</span>
-            {{ selectedFeatures[0].geometry.coordinates }}
+            {{ station.geometry.coordinates }}
           </v-card-text>
         </v-card>
       </v-col>

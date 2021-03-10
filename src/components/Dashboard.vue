@@ -1,147 +1,213 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-card class="px-0 mx-0">
-        <v-card-title>
-          <div class="text-h5 ">
-            Список ваших подписок
-          </div>
-        </v-card-title>
-        <v-divider></v-divider>
-        <v-data-table :headers="headers" :items="orders.data">
-          <!-- eslint-disable-next-line -->
-					<template v-slot:item.begin_date="{ item }">
-            <span>{{ new Date(item.begin_date).toLocaleDateString() }}</span>
-          </template>
-          <!-- eslint-disable-next-line -->
-					<template v-slot:item.stations="{ item }">
-            <span>{{ stationsString(item.stations) }}</span>
-          </template>
-          <!-- eslint-disable-next-line -->
-					<template v-slot:item.status="{ item }">
-            <span class="text-caption">{{ statusAlias(item) || "" }}</span>
-          </template>
-
-          <template v-slot:top v-if="isAdmin">
-            <!-- Editing column and dialogs -->
-            <v-dialog v-model="dialog" max-width="640px">
-              <v-card>
-                <v-card-title>
-                  <span class="headline">Радактирование</span>
-                </v-card-title>
-
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col>
-                        <v-select
-                          :items="statuses"
-                          item-text="alias"
-                          item-value="status"
-                          label="Статус подписки"
-                          v-model="editedItem.status"
-                          dense
-                        ></v-select>
-                        <v-text-field
-                          v-model="editedItem.login_ntrip"
-                          label="Логин NTRIP"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.password_ntrip"
-                          label="Пароль NTRIP"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.region"
-                          label="Область"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.district"
-                          label="Район"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.city"
-                          label="Город"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.address"
-                          label="Адрес"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.plan"
-                          label="Тарифный план"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.begin_date"
-                          label="Дата начала подписки"
-                          dense
-                        ></v-text-field>
-
-                        <v-text-field
-                          v-model="editedItem.end_date"
-                          label="Дата завершения подписки"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close">
-                    Отмена
-                  </v-btn>
-                  <v-btn color="blue darken-1" text @click="save">
-                    Сохранить
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-            <v-dialog v-model="dialogDelete" max-width="640px">
-              <v-card>
-                <v-card-title class="headline"
-                  >Вы уверены, что хотите удалить подписку?</v-card-title
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="closeDelete"
-                    >Отмена</v-btn
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <v-navigation-drawer
+          app
+          clipped
+          left
+          disable-resize-watcher
+          v-model="accountDrawer"
+        >
+          <v-sheet color="grey lighten-4" class="pa-4">
+            <v-list-item two-line v-if="user">
+              <v-list-item-content class="pb-0">
+                <v-list-item-title class="title">
+                  {{ user.firstname }} {{ user.lastname }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ user.email }}
+                </v-list-item-subtitle>
+                <div class="text-left">
+                  <v-btn
+                    text
+                    class="ml-0"
+                    x-small
+                    color="primary"
+                    @click.prevent="logOut()"
+                    rounded
+                    outlined
+                    >Выход</v-btn
                   >
-                  <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                    >Да</v-btn
+                  <v-chip
+                    class="ma-2"
+                    color="error"
+                    dark
+                    x-small
+                    v-if="user.role === 'admin'"
                   >
-                  <v-spacer></v-spacer>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </template>
-          <!-- eslint-disable-next-line -->
-					<template v-slot:item.actions="{ item }" v-if="isAdmin">
-            <v-icon small class="mr-2" @click="editItem(item)">
-              mdi-pencil
-            </v-icon>
-            <v-icon small @click="deleteItem(item)">
-              mdi-delete
-            </v-icon>
-          </template>
-        </v-data-table>
-      </v-card>
-    </v-col>
-  </v-row>
+                    Администратор
+                  </v-chip>
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+          </v-sheet>
+          <v-divider></v-divider>
+          <v-list dense nav>
+            <v-list-item link to="/account" exact>
+              <v-list-item-icon>
+                <v-icon>mdi-view-dashboard</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  Подписки
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item link to="/account/profile" exact>
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>
+                  Профиль
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+        <v-card class="px-0 mx-0">
+          <v-card-title>
+            <div class="text-h5 ">
+              Ваши подписки
+            </div>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-data-table :headers="headers" :items="orders.data">
+            <!-- eslint-disable-next-line -->
+						<template v-slot:item.begin_date="{ item }">
+              <span>{{ new Date(item.begin_date).toLocaleDateString() }}</span>
+            </template>
+            <!-- eslint-disable-next-line -->
+						<template v-slot:item.stations="{ item }">
+              <span>{{ stationsString(item.stations) }}</span>
+            </template>
+            <!-- eslint-disable-next-line -->
+						<template v-slot:item.status="{ item }">
+              <span class="text-caption">{{ statusAlias(item) || "" }}</span>
+            </template>
+
+            <template v-slot:top v-if="isAdmin">
+              <!-- Editing column and dialogs -->
+              <v-dialog v-model="dialog" max-width="640px">
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Радактирование</span>
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          <v-select
+                            :items="statuses"
+                            item-text="alias"
+                            item-value="status"
+                            label="Статус подписки"
+                            v-model="editedItem.status"
+                            dense
+                          ></v-select>
+                          <v-text-field
+                            v-model="editedItem.login_ntrip"
+                            label="Логин NTRIP"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.password_ntrip"
+                            label="Пароль NTRIP"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.region"
+                            label="Область"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.district"
+                            label="Район"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.city"
+                            label="Город"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.address"
+                            label="Адрес"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.plan"
+                            label="Тарифный план"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.begin_date"
+                            label="Дата начала подписки"
+                            dense
+                          ></v-text-field>
+
+                          <v-text-field
+                            v-model="editedItem.end_date"
+                            label="Дата завершения подписки"
+                            dense
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="close">
+                      Отмена
+                    </v-btn>
+                    <v-btn color="blue darken-1" text @click="save">
+                      Сохранить
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              <v-dialog v-model="dialogDelete" max-width="640px">
+                <v-card>
+                  <v-card-title class="headline"
+                    >Вы уверены, что хотите удалить подписку?</v-card-title
+                  >
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="closeDelete"
+                      >Отмена</v-btn
+                    >
+                    <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                      >Да</v-btn
+                    >
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </template>
+            <!-- eslint-disable-next-line -->
+						<template v-slot:item.actions="{ item }" v-if="isAdmin">
+              <v-icon small class="mr-2" @click="editItem(item)">
+                mdi-pencil
+              </v-icon>
+              <v-icon small @click="deleteItem(item)">
+                mdi-delete
+              </v-icon>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -215,7 +281,19 @@ export default {
   },
   computed: {
     ...mapState("auth", ["user"]),
+    ...mapState(["accountDrawer"]),
+    ...mapState("orders", { areOrdersLoading: "isFindPending" }),
     ...mapGetters("orders", { findOrdersInStore: "find" }),
+
+    accountDrawer: {
+      get() {
+        return this.$store.state.accountDrawer;
+      },
+      set(ev) {
+        this.$store.commit("setDrawer", ev);
+      }
+    },
+
     orders() {
       return this.findOrdersInStore({
         query: {
@@ -249,10 +327,11 @@ export default {
     ...mapActions("orders", {
       removeOrder: "remove"
     }),
+    ...mapActions(["toggleDrawer"]),
     statusAlias(item) {
       let status;
       if (item.status) {
-        status = this.statuses.find((el, i, a) => {
+        status = this.statuses.find(el => {
           return el.status === item.status;
         });
         return status.alias;
@@ -315,20 +394,13 @@ export default {
     }
   },
   created: function() {
-    console.log(this.user);
     this.findOrders({
       query: {
-        $populate: ["user"],
-        $sort: { createdAt: -1 },
-        $limit: 50
+        $sort: { createdAt: -1 }
       }
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    }).catch(err => {
+      console.log(err);
+    });
   }
 };
 </script>

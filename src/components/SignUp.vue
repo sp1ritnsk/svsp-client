@@ -18,8 +18,17 @@
   >
     <v-container>
       <v-row justify="center">
+        <v-col cols="12" md="6" class="text-center my-3">
+          <h2 class="text-3 font-weight-light mb-4 text-uppercase">Аккаунт</h2>
+          <div class="text-subtitle-2">
+            Наличие аккаункта в системе позволяет Вам получить доступ к сервисам
+            и данным референцных станций и контролировать подписки
+          </div>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
         <v-col cols="12" sm="10" md="8" lg="4">
-          <v-card class="mt-5" elevation="6">
+          <v-card class="mb-6" elevation="6">
             <v-card-title>РЕГИСТРАЦИЯ В СИСТЕМЕ</v-card-title>
             <v-card-text>
               <v-text-field
@@ -145,7 +154,7 @@
               </v-checkbox>
               <v-btn
                 :disabled="!checkbox"
-                color="blue"
+                color="primary"
                 :dark="checkbox"
                 type="submit"
                 >Отправить</v-btn
@@ -175,14 +184,13 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import {
   required,
   minLength,
   maxLength,
   email,
-  helpers,
   integer
 } from "vuelidate/lib/validators";
 
@@ -223,7 +231,6 @@ export default {
   },
 
   data: () => ({
-    snackbar: false,
     email: undefined,
     password: undefined,
     error: undefined,
@@ -236,6 +243,7 @@ export default {
     iin: undefined,
     bin: undefined,
     checkbox: false,
+    snackbar: false,
     isValid: false
   }),
   computed: {
@@ -313,13 +321,11 @@ export default {
       phone,
       type,
       iin,
-      bin,
-      checkbox
+      bin
     ) {
       this.dismissError();
       this.$v.$touch();
       if (this.$v.$invalid) {
-        console.log(this.snackbar);
         this.snackbar = true;
       } else {
         this.isValid = true;
@@ -335,7 +341,7 @@ export default {
           iin,
           bin
         })
-          .then(response => {
+          .then(() => {
             this.authenticate({ strategy: "local", email, password }).then(() =>
               this.$router.push("/account")
             );

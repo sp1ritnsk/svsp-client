@@ -1,9 +1,18 @@
 <template>
-  <v-form ref="form" @submit.prevent="signIn(email, password)">
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="12" sm="10" md="8" lg="4">
-          <v-card class="mt-5" elevation="6">
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="6" class="text-center my-3">
+        <h2 class="text-3 font-weight-light mb-4 text-uppercase">Аккаунт</h2>
+        <div class="text-subtitle-2">
+          Наличие аккаункта в системе позволяет Вам получить доступ к сервисам и
+          данным референцных станций и контролировать подписки
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="4">
+        <v-form ref="form" @submit.prevent="signIn(email, password)">
+          <v-card class="mb-6" elevation="6">
             <v-card-title>ВХОД В СИСТЕМУ</v-card-title>
             <v-card-text>
               <v-text-field
@@ -25,7 +34,7 @@
                 outlined
                 type="password"
               ></v-text-field>
-              <v-btn color="blue" dark type="submit">Отправить</v-btn>
+              <v-btn color="primary" dark type="submit" block>Отправить</v-btn>
             </v-card-text>
             <v-card-text class="pt-0">
               <v-divider></v-divider>
@@ -35,9 +44,9 @@
               </p>
             </v-card-text>
           </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+        </v-form>
+      </v-col>
+    </v-row>
     <v-snackbar v-model="snackbar" :timeout="2000">
       <span>Проверьте форму и повторите отправку</span>
 
@@ -47,18 +56,13 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </v-form>
+  </v-container>
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
-import {
-  required,
-  minLength,
-  maxLength,
-  email
-} from "vuelidate/lib/validators";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],

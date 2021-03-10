@@ -2,7 +2,7 @@
   <v-form v-if="user" ref="form" @submit.prevent="submitOrder()">
     <v-card flat>
       <v-card-title class="pb-3">
-        <div class="text-h5">Подача заявки</div>
+        <div class="text-h6">Подача заявки</div>
       </v-card-title>
       <v-card-text>
         <v-select
@@ -86,7 +86,7 @@
           :items="plans"
         ></v-select>
         <v-row class="px-0" align="center" justify="space-around">
-          <v-btn class="mx-0" color="blue" dark type="submit"
+          <v-btn class="mx-0" color="primary" dark type="submit"
             >Отправить заявку</v-btn
           >
           <v-btn class="mx-0" color="grey-lighten-1" @click="cancelOrder"

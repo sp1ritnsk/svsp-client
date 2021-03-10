@@ -11,6 +11,15 @@ export default class User extends BaseModel {
   static instanceDefaults(data, { models, store }) {
     return {
       // write your default properties for reactivity here; see: https://vuex.feathersjs.com/model-classes.html#instancedefaults
+      // email: '',
+      // password: '',
+      // firstname: '',
+      // lastname: '',
+      // patronym: '',
+      // phone: '',
+      // type: '',
+      // iin: '',
+      // bin: '',
     };
   }
 
